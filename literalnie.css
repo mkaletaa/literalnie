@@ -54,11 +54,7 @@
     margin-top: 10px;
 }
 
-#con {
-    width: 40%;
-    margin: auto;
 
-}
 
 #words {
     border: 1px solid black;
@@ -78,6 +74,8 @@
     position: absolute;
     width: 100px;
     height: 50px;
+    margin-left:5%;
+    margin-top: 50px;
 
 
 }
@@ -137,6 +135,13 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
+#con {
+    width: 40%;
+    margin: auto;
+    background-color:burlywood;
+    display: block;
+}
+
 #inputs {
 
     margin-top: 100px;
@@ -152,4 +157,13 @@ input:checked+.slider:before {
 
     font-size: 40px;
     border-radius: 5px;
+}
+
+#reset{
+    height: 50px;
+    width: 70px;
+}
+#right{
+    display: flexbox;
+    background-color:blueviolet
 }
