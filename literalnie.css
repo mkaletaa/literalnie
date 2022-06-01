@@ -298,3 +298,34 @@ input:checked+.slider:before {
 #Oslo {
     background-color: orange;
 }
+
+.show {
+    -webkit-animation: fadeIn 3s;
+    animation: fadeIn 3s;
+}
+
+/* Add animation (fade in the popup) */
+/* @-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    10% {opacity:1 ;}
+    90% {opacity:1 ;}
+    100% {opacity:0 ;}
+  } */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

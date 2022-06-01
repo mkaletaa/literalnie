@@ -3,9 +3,21 @@ const letters = document.querySelectorAll('.letter');
 const check = document.querySelector('#check');
 const napis = document.querySelector('#napis');
 const inp = document.querySelectorAll('.inp');
-//const reset = document.querySelector('#reset');
+const popup = document.querySelector('#popup');
 
+function alertfn() {
+	console.log('już');
+	popup.style.cssText = `
+	opacity:0; position: fixed; margin-left:auto; top: 50px; z-index:99;
+	`
+	popup.classList.add('show')
+	setTimeout(() => {
+		popup.classList.remove('show'),
 
+			console.log('wewewe');
+
+	}, 3000)
+}
 
 
 var modal = document.getElementById('id01');
@@ -138,41 +150,55 @@ for (let i = 0; i < letters.length; i++) {
 
 	letters[i].addEventListener('click', ev => {
 		if (!check.checked) {
-			letters[i].classList.toggle('lack');
 
-			let Id = letters[i].id;
-			console.log(Words);
+			if (letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) {
+				//console.log('już');
+				alertfn()
+			} else {
 
-			for (let i = 0; i < Words.length; i++) {
+				letters[i].classList.toggle('lack');
 
-				//console.log(Words[i], Words[i].indexOf(Id));
-				if (Words[i].indexOf(Id) > -1) {
+				let Id = letters[i].id;
+				//console.log(Words);
 
-					//console.log(Words[i]);
-					Words[i] = ' ';
+				for (let i = 0; i < Words.length; i++) {
 
+					//console.log(Words[i], Words[i].indexOf(Id));
+					if (Words[i].indexOf(Id) > -1) {
+
+						//console.log(Words[i]);
+						Words[i] = ' ';
+
+					}
 				}
+
+
+				list.innerHTML = Words.join(' ');
 			}
 
-
-			list.innerHTML = Words.join(' ');
 		} else if (check.checked) {
 
-			letters[i].classList.toggle('thereIs');
-			let Id = letters[i].id;
+			if (letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) {
+				//console.log('już');
+				alertfn()
+			} else {
 
-			for (let i = 0; i < Words.length; i++) {
+				letters[i].classList.toggle('thereIs');
+				let Id = letters[i].id;
 
-				//console.log(Words[i], Words[i].indexOf(Id));
-				if (Words[i].indexOf(Id) == -1) {
+				for (let i = 0; i < Words.length; i++) {
 
-					//console.log(Words[i]);
-					Words[i] = ' ';
+					//console.log(Words[i], Words[i].indexOf(Id));
+					if (Words[i].indexOf(Id) == -1) {
+
+						//console.log(Words[i]);
+						Words[i] = ' ';
+					}
 				}
+
+				list.innerHTML = Words.join(' ');
+
 			}
-
-			list.innerHTML = Words.join(' ');
-
 		}
 	});
 
