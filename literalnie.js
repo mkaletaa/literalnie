@@ -74,20 +74,21 @@ console.log(Words.length);
 //words=words.replace('\n', ',').replace(',,',',').split(',');
 let WordsReset = Words;
 
-console.log((words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replace(', ', ','));
+console.log((words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort().join(' '));
 
 function reset() {
+
 	list.innerHTML = (words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replace(', ', ',').split(',').sort().join(" ");
 
-	for(let i=0; i<letters.length; i++){
+	for (let i = 0; i < letters.length; i++) {
 		letters[i].classList.remove('thereIs', 'position', 'lack')
 	}
 
-	for(let i=0; i<4; i++){
-		inp[i].value=''
+	for (let i = 0; i < 5; i++) {
+		inp[i].value = ''
 	}
 
-	}
+}
 
 for (let i = 0; i < letters.length; i++) {
 	//console.log(letters[i].id);
@@ -98,7 +99,7 @@ for (let i = 0; i < letters.length; i++) {
 			letters[i].classList.toggle('lack');
 
 			let Id = letters[i].id;
-console.log(Words);
+			console.log(Words);
 
 			for (let i = 0; i < Words.length; i++) {
 
@@ -165,4 +166,3 @@ for (let i = 0; i < inp.length; i++) {
 
 
 list.innerHTML = Words.join(' ');
-
