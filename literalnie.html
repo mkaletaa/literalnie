@@ -26,8 +26,34 @@
 		<!-- Modal Content -->
 		<div class="modal-content animate">
 			<div class="container">
-				<div style="width: 50%; height: 50%; margin: auto">wdd</div>
-				<div style="width: 50%; height: 50%; margin: auto">wdd</div>
+				<button class="tablink" onclick="openTab('London', this, 'red')" id="defaultOpen">Czym jest
+					literalnie.fun?</button>
+				<button class="tablink" onclick="openTab('Paris', this, 'green')">Jak korzystać z
+					literalnie.solver?</button>
+				<button class="tablink" onclick="openTab('Tokyo', this, 'blue')">Jak działa ta strona?</button>
+				<!-- <button class="tablink" onclick="openTab('Oslo', this, 'orange')">Oslo</button> -->
+
+				<div id="London" class="tabcontent">
+
+					<p>Literalnie.fun to popularna łamigłówka słowna</p>
+				</div>
+
+				<div id="Paris" class="tabcontent">
+					<h1>Paris</h1>
+					<p>Paris is the capital of France.</p>
+				</div>
+
+				<div id="Tokyo" class="tabcontent">
+					<h1>Tokyo</h1>
+					<p>Tokyo is the capital of Japan.</p>
+				</div>
+
+				<div id="Oslo" class="tabcontent">
+					<h1>Oslo</h1>
+					<p>Oslo is the capital of Norway.</p>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
@@ -41,8 +67,9 @@
 
 
 	<div id="header" style="margin: auto; width: 100%; text-align: center; font-size: 20px; ">
-		<button onclick="document.getElementById('id01').style.display='block'">?</button>
-		<div id='napis' style="display: inline-block"> Kliknij raz na literę jeśli
+		<button onclick="document.getElementById('id01').style.cssText=`display: block;`"
+			style="border-radius: 50%;">?</button>
+		<div id='napis' style="display: inline-block;"> Kliknij raz na literę jeśli
 			szukane słowo jej <u>nie zawiera</u></div>
 	</div>
 
