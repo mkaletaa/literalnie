@@ -7,15 +7,12 @@ const popup = document.querySelector('#popup');
 const inputs = document.querySelector('#inputs');
 
 function alertfn() {
-	console.log('już');
 	popup.style.cssText = `
 	display: block; opacity:0; position: fixed; margin-left:auto; top: 50px; z-index:99;
 	`
 	popup.classList.add('show')
 	setTimeout(() => {
-		popup.classList.remove('show'),
-
-			console.log('wewewe');
+		popup.classList.remove('show')
 
 	}, 3000)
 }
@@ -61,9 +58,9 @@ function yellow() {
 }
 
 document.addEventListener("keyup", e => {
-	//console.log("Klawisz: ", e.key);
-	if (e.key == "Shift") {
-		//console.log('shiftaaaaa');
+
+	if (e.key == "Control") {
+
 		check.click()
 	}
 });
@@ -157,28 +154,23 @@ function reset() {
 }
 
 for (let i = 0; i < letters.length; i++) {
-	//console.log(letters[i].id);
-
-
 	letters[i].addEventListener('click', ev => {
 		if (!check.checked) {
 
 			if (letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) {
-				//console.log('już');
 				alertfn()
 			} else {
 
 				letters[i].classList.toggle('lack');
 
 				let Id = letters[i].id;
-				//console.log(Words);
+
 
 				for (let i = 0; i < Words.length; i++) {
 
-					//console.log(Words[i], Words[i].indexOf(Id));
+
 					if (Words[i].indexOf(Id) > -1) {
 
-						//console.log(Words[i]);
 						Words[i] = ' ';
 
 					}
@@ -192,7 +184,7 @@ for (let i = 0; i < letters.length; i++) {
 		} else if (check.checked) {
 
 			if (letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) {
-				//console.log('już');
+
 				alertfn()
 			} else {
 
@@ -201,10 +193,10 @@ for (let i = 0; i < letters.length; i++) {
 
 				for (let i = 0; i < Words.length; i++) {
 
-					//console.log(Words[i], Words[i].indexOf(Id));
+
 					if (Words[i].indexOf(Id) == -1) {
 
-						//console.log(Words[i]);
+
 						Words[i] = ' ';
 					}
 				}
@@ -289,28 +281,36 @@ for (let i = 0; i < letters.length; i++) {
 
 
 for (let i = 0; i < inp.length; i++) {
+	inp[i].addEventListener("beforeinput", e => {
+		e.currentTarget.previousValue = e.currentTarget.value;
+	});
+
 	inp[i].addEventListener('input', ev => {
-		let j = 0;
+		//let char = ev.data.charCodeAt(0)
 
-		for (word of Words) {
-			if (word.charAt(i) !== inp[i].value) {
-				word = ' ';
+		if (/[a-zA-Z]/.test(ev.currentTarget.value)) {
 
-				inp[i].classList.add('full')
-				inp[i].readOnly = true
+			let j = 0;
+			for (word of Words) {
+				if (word.charAt(i) !== inp[i].value) {
+					word = ' ';
 
+					inp[i].classList.add('full')
+					inp[i].readOnly = true
+
+				}
+
+				Words[j] = word;
+				j++;
 			}
-
-			Words[j] = word;
-			j++;
+			for (let k = 0; k < letters.length; k++) {
+				if (letters[k].id == inp[i].value) letters[k].classList.add('position');
+			}
+			list.innerHTML = Words.join(' ');
+			isEmpty()
+		} else {
+			ev.currentTarget.value = ev.currentTarget.previousValue;
 		}
-		for (let k = 0; k < letters.length; k++) {
-			if (letters[k].id == inp[i].value) letters[k].classList.add('position');
-			//console.log(letters[k].id);
-
-		}
-		list.innerHTML = Words.join(' ');
-		isEmpty()
 	});
 }
 
@@ -329,15 +329,10 @@ function skipF(e) {
 				e = -1
 
 			}
-			//console.log('before', e);
 			inp[e + 1].focus()
-
 			e++
-			//console.log('after', e);
 		}
-
 	}
-	console.log(inp[e], " ", inp[e + 1] === document.activeElement);
 }
 
 
@@ -359,10 +354,8 @@ function skipB(e) {
 			console.log('before', e);
 			inp[e - 1].focus()
 			e--
-			//console.log('after', e);
 		}
 	}
-	//console.log(inp[e], " ", inp[e - 1] === document.activeElement);
 }
 
 
