@@ -348,23 +348,19 @@ function skipB(e) {
 	console.log('left');
 
 	const el = document.activeElement
-	const ee = e
+
 	for (let i = 0; i < 5; i++) {
 
 		if (inp[e].classList.contains('full') && (inp[e] === document.activeElement)) {
 			if (e == 0) {
 
 				e = 5
-
 			}
-
 			console.log('before', e);
-			//inp[e - 1].focus()
-
+			inp[e - 1].focus()
 			e--
 			//console.log('after', e);
 		}
-
 	}
 	//console.log(inp[e], " ", inp[e - 1] === document.activeElement);
 }
