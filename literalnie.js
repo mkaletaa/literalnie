@@ -219,13 +219,7 @@ for (let i = 0; i < letters.length; i++) {
 }
 
 
-// let childs
-// function fn(){
-// for(let i=0; i<5; i++){
-// 	if(!inputs.children[i].classList.contains("full"))
-// 	childs[i]=inputs[i]
-// }
-// }
+
 
 // inp[0].addEventListener('keyup', e => {fn()
 // 	if (e.key == 'ArrowRight') {
@@ -268,46 +262,6 @@ for (let i = 0; i < letters.length; i++) {
 // 	}
 // })
 
-inp[0].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		inputs.children[1].focus()
-	}
-	if (e.key == 'ArrowLeft') {
-		inputs.children[4].focus()
-	}
-})
-inp[1].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		inputs.children[2].focus()
-	}
-	if (e.key == 'ArrowLeft') {
-		inputs.children[0].focus()
-	}
-})
-inp[2].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		inputs.children[3].focus()
-	}
-	if (e.key == 'ArrowLeft') {
-		inputs.children[1].focus()
-	}
-})
-inp[3].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		inputs.children[4].focus()
-	}
-	if (e.key == 'ArrowLeft') {
-		inputs.children[2].focus()
-	}
-})
-inp[4].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		inputs.children[0].focus()
-	}
-	if (e.key == 'ArrowLeft') {
-		inputs.children[3].focus()
-	}
-})
 
 
 //nie działa, nwm czemu, wyżej lepsza wersja
@@ -355,15 +309,108 @@ for (let i = 0; i < inp.length; i++) {
 			//console.log(letters[k].id);
 
 		}
-
 		list.innerHTML = Words.join(' ');
-
 		isEmpty()
-
-
 	});
 }
 
 
+
+function skipF(e) {
+	e++
+	inputs.children[e].focus()
+	const el = document.activeElement
+	const ee = e
+	for (let i = 0; i < 5; i++) {
+
+		if (inp[e].classList.contains('full') && (inp[e] === document.activeElement)) {
+			if (e == 4) {
+
+				e = -1
+
+			}
+			//console.log('before', e);
+			inp[e + 1].focus()
+
+			e++
+			//console.log('after', e);
+		}
+
+	}
+	console.log(inp[e], " ", inp[e + 1] === document.activeElement);
+}
+
+
+function skipB(e) {
+	e--
+
+	inputs.children[e].focus()
+	console.log('left');
+
+	const el = document.activeElement
+	const ee = e
+	for (let i = 0; i < 5; i++) {
+
+		if (inp[e].classList.contains('full') && (inp[e] === document.activeElement)) {
+			if (e == 0) {
+
+				e = 5
+
+			}
+
+			console.log('before', e);
+			//inp[e - 1].focus()
+
+			e--
+			//console.log('after', e);
+		}
+
+	}
+	//console.log(inp[e], " ", inp[e - 1] === document.activeElement);
+}
+
+
+inp[0].addEventListener('keyup', e => {
+
+	if (e.key == 'ArrowRight') {
+
+		skipF(0)
+	}
+	if (e.key == 'ArrowLeft') {
+		skipB(5)
+	}
+})
+inp[1].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		skipF(1)
+	}
+	if (e.key == 'ArrowLeft') {
+		skipB(1)
+	}
+})
+inp[2].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		skipF(2)
+	}
+	if (e.key == 'ArrowLeft') {
+		skipB(2)
+	}
+})
+inp[3].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		skipF(3)
+	}
+	if (e.key == 'ArrowLeft') {
+		skipB(3)
+	}
+})
+inp[4].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		skipF(-1)
+	}
+	if (e.key == 'ArrowLeft') {
+		skipB(4)
+	}
+})
 
 list.innerHTML = Words.join(' ');
