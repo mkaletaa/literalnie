@@ -4,11 +4,12 @@ const check = document.querySelector('#check');
 const napis = document.querySelector('#napis');
 const inp = document.querySelectorAll('.inp');
 const popup = document.querySelector('#popup');
+const inputs = document.querySelector('#inputs');
 
 function alertfn() {
 	console.log('już');
 	popup.style.cssText = `
-	opacity:0; position: fixed; margin-left:auto; top: 50px; z-index:99;
+	display: block; opacity:0; position: fixed; margin-left:auto; top: 50px; z-index:99;
 	`
 	popup.classList.add('show')
 	setTimeout(() => {
@@ -60,13 +61,22 @@ function yellow() {
 }
 
 document.addEventListener("keyup", e => {
-	console.log("Klawisz: ", e.key);
+	//console.log("Klawisz: ", e.key);
 	if (e.key == "Shift") {
-		console.log('shiftaaaaa');
+		//console.log('shiftaaaaa');
 		check.click()
 	}
 });
 
+function isEmpty() {
+	let count = 0;
+	for (let i = 0; i < Words.length; i++) {
+		if (Words[i] == ' ')
+			count++
+		if (count == Words.length)
+			list.innerHTML = '<span style="color: red">BRAK SŁÓW</span>'
+	}
+}
 
 let words1 = "abace, abaci, abaka, abaką, abakę, abaki, abako, abaku, abata, abaty, abbie, abbom, abbów, abcug, abdul, abobr, abort, abrys, absta, abstą, abstę, absto, absty, absyd, abwer, acana, acani, acanu, acany, achać, achaj, achał, acham, achań, achom, achów, acida, acpan, acpań, actio, acyle, acyli, acylu, adasi, adatu, adaty, addio, adept, adieu, admin, adres, adria, adrią, adrie, adrię, adrii, adrio, adryj, adżyk, aeccy, aecka, aecką, aecki, aecku, aeral, aerob, afcie, afekt, afera, aferą, aferę, afero, afery, afgan, afiks, afisz, afryk, afryt, aftom, agach, agada, agadą, agadę, agado, agady, agama, agamą, agamę, agami, agamo, agamy, agany, agapa, agapą, agape, agapę, agapo, agapy, agaru, agary, agatu, agaty, agawa, agawą, agawę, agawo, agawy, agema, agemą, agemę, agemo, agemy, agend, agens, agent, agfie, agfom, aggia, aggio, aggiu, agiem, agile, agiom, agiów, aglet, agnat, agnus, agona, agoną, agonę, agono, agonu, agony, agora, agorą, agorę, agoro, agory, agraf, aguti, ahims, ahins, aidsa, aidsu, aidsy, aioli, aisis, ajaks, ajent, ajeru, ajery, ajkuj, ajmak, ajran, ajwar, akant, akara, akarą, akarę, akaro, akary, akces, akcie, akcik, akcja, akcją, akcje, akcję, akcji, akcjo, akcyj, akcyz, akiom, aklin, akond, akont, akord, akrem, akrom, akron, akrów, akryl, akrze, aksel, aksis, aksla, aksle, aksli, akslu, akson, aktem, aktom, aktor, aktów, aktyn, aktyw, akutu, akuty, akwen, akyna, akyny, alach, alaks, alami, alarm, alasz, alaxu, alaxy, albem, albie, albit, albom, alboż, albów, album, alcie, aldem, aldis, aldol, aldom, aldoz, aldów, aldyn, aldze, aleby, alefa, alefu, alefy, aleja, aleją, aleje, aleję, alejo, alert, alfce, alfek, alfer, alfie, alfka, alfką, alfkę, alfki, alfko, alfom, algin, algol, algom, alias, aliaż, alibi, alija, aliją, alije, aliję, alijo, alima, alimy, alitu, ality, alkad, alkan, alken, alkil, alkin, alkom, alków, almei, almej, almik, alnik, aloes, aloha, alona, aloną, alonę, alono, alony, alonż, aloza, alozą, alozę, alozo, alozy, alpag, alpak, alpem, alpie, alpom, alpów, altan, altem, altom, altów, alumn, alund, alwar, ałunu, ałuny, ałycz, amant, ambem, ambie, ambit, ambom, ambon, ambra, ambrą, ambrę, ambro, ambry, ameba, amebą, amebę, amebo, ameby, amfid, amfie, amfom, amfor, amica, amicą, amice, amicę, amico, amida, amidą, amidę, amido, amidu, amidy, amiga, amigą, amigę, amigi, amigo, amiki, amina, aminą, aminę, amino, aminy, amiom, amisz, amoki, amoku, amole, amoli, amolu, amonu, amony, amora, amorf, amory, amper, ampla, amplą, ample, amplę, ampli, amplo, ampul, ampuł, amrit, amryt, amura, amury, amyle, amyli, amylu, anand, anatt, ancie, ancug, aneks, angaż, angin, angob, angol, angor, angst, aniby, anima, animą, anime, animę, animo, animy, anioł, anion, ankra, ankrą, ankrę, ankro, ankry, annat, anoda, anodą, anodę, anodo, anody, anons, ansie, ansom, antab, antał, antek, anten, antka, antki, antku, antom, antyk, anusa, anusy, anyże, anyżu, aoida, aoidą, aoidę, aoido, aoidy, aojda, aojdą, aojdę, aojdo, aojdy, aorta, aortą, aortę, aorto, aorty, aowca, aowce, aowcu, aowcy, apage, apasz, apate, apeks, apele, apeli, apell, apelu, apiać, apiol, apisu, apisy, aplet, aplik, aplit, aplom, aport, apret, apryl, apsar, apsel, apsik, apsla, apsle, apsli, apslu, apsyd, aptek, araba, araby, arach, araci, araki, araku, arame, arami, aranż, arata, araty, arbek, arbie, arbom, arbuz, arche, archi, arden, areał, arece, areka, areką, arekę, areki, areko, arena, areną, arend, arenę, areng, areno, arenu, areny, arete, arfie, arfom, arfuj, argon, argot, argus, arhat, arian, ariel, ariet, ariom, arion, arios, arkad, arkan, arkom, arkoz, armad, armat, armia, armią, armie, armię, armii, armij, armil, armio, arnik, arnot, aromu, aromy, aronu, arony, arowi, arras, arsan, arsen, arsie, arsom, arsyn, artel, aryki, aryku, aryle, aryli, arylu, asach, asami, asana, asaną, asanę, asani, asano, asanu, asany, asauł, ascez, ascon, asdic, asert, askar, asowi, aspan, assai, astat, aster, astik, astma, astmą, astmę, astmo, astmy, astra, astrą, astrę, astro, astry, asura, asurą, asurę, asuro, asury, asyst, aszet, aszyk, aśram, atach, ataki, ataku, atami, atari, ataru, atary, atest, atlas, atłas, atman, atole, atoli, atolu, atomu, atomy, atowi, atrap, atria, attyd, attyk, atutu, atuty, aucie, audio, audyt, augit, augur, aukub, aulom, aulos, aułem, aułom, aułów, aurom, auror, aurze, autek, autem, autka, autko, autku, autom, autor, autów, autyk, awale, awalu, awans, awena, aweną, awenę, aweno, awenu, aweny, awers, awiza, awizo, awizu, awizy, awosz, azali, azbuk, azdyk, azoik, azotu, azoty, azowa, azową, azowe, azowi, azowy, azyle, azylu, azyma, azymą, azymę, azymo, azymy, azyna, azyną, azynę, azyno, azyny, ażbym, ażbyś, ażeby, ażiem, ażiom, ażiów, ażuru, ażury, babce, babci, babek, babia, babią, babie, babim, babin, babka, babką, babkę, babki, babko, babom, babon, babów, babra, babrz, babsk, babul, babuń, babus, babuś, bacie, bacik, bacom, baców, bacuj, baczą, baczę, baczy, badać, badaj, badał, badam, badan, badań, badem, badom, badów, badyl, bagaż, bagna, bagno, bagnu, bagra, bagru, bagry, bahta, bahty, bajać, bajaj, bajał, bajam, bajan, bajań, bając, bajca, bajcą, bajce, bajcę, bajco, bajcy, bajcz, bajda, bajdą, bajdę, bajdo, bajdy, bajek, bajem, bajer, bajęd, bajka, bajką, bajkę, bajki, bajko, bajmy, bajom, bajor, bajów, bajta, bajtu, bajty, bajże, bakan, baken, bakom, baków, baksa, baksy, bakun, balas, balat, balem, balet, balia, balią, balie, balię, balii, balij, balik, balio, balom, balon, balot, balów, balsa, balsą, balsę, balso, balsy, baluj, bałak, bałam, bałaś, bałby, bałem, bałeś, bałtu, bałty, bałyk, bamba, bambo, bambu, banał, banan, banat, bance, banda, bandą, bandę, bando, bandu, bandy, banek, banem, baner, bania, banią, banie, banię, banio, baniu, banjo, banka, banką, bankę, banki, banko, banku, banom, banów, banta, bantu, banty, banuj, bańce, bańka, bańką, bańkę, bańki, bańko, baonu, baony, baora, baory, barak, baran, barat, baraż, barce, barci, barda, bardo, bardu, bardy, barek, barem, bareż, baria, barią, barie, barię, barii, bario, barka, barką, barkę, barki, barko, barku, barnu, barny, barok, barom, baron, barów, barta, bartą, bartę, barto, barty, barwa, barwą, barwę, barwi, barwo, barwy, baryj, barył, baryt, barze, basek, basem, basen, baset, basfa, basfy, basic, basie, baski, basku, basma, basmą, basmę, basmo, basmy, basom, basów, bassa, bassy, basta, basuj, basza, baszą, basze, baszę, baszo, baszt, baszy, baśce, baśka, baśką, baśkę, baśki, baśko, baśni, batat, batem, batik, batog, batom, baton, batoż, batów, batut, baudu, baudy, bauer, bawar, bawet, bawią, bawić, bawię, bawił, bawmy, bawół, bawże, bazar, bazia, bazią, bazie, bazię, bazio, baziu, bazom, bazuj, bazun, bazyt, baźce, baźka, baźką, baźkę, baźki, baźko, bażyn, bąbel, bąbla, bąble, bąbli, bąblu, bąkać, bąkaj, bąkał, bąkam, bąkań, bąkną, bąknę, bąkom, bąków, beana, beani, beany, beatu, beaty, bebop, becie, becik, beczą, beczę, beczy, bedel, bedla, bedle, bedli, bedlu, begam, begin, begom, begów, bejca, bejcą, bejce, bejcę, bejco, bejcu, bejcy, bejem, bejma, bejmy, bejom, bejów, bejtu, bejty, bekać, bekaj, bekał, bekam, bekań, bekas, bekną, beknę, bekom, bekon, beków, beksa, beksą, beksę, bekso, beksy, belce, belek, belem, belga, belgą, belgę, belgi, belgo, belgu, belka, belką, belkę, belki, belko, bella, belle, bellu, belom, belon, belów, beluj, bełcą, bełce, bełcę, bełcz, bełta, bełtu, bełty, bemar, bemit, bemol, bencz, berda, berdą, berdę, berdo, berdy, berek, bereł, berem, beret, berka, berki, berku, berle, berła, berło, berłu, berom, berów, bersa, berso, bersu, berta, bertą, bertę, berto, berty, beryl, berze, bessa, bessą, bessę, besso, bessy, betce, betek, betel, betem, betka, betką, betkę, betki, betko, betom, beton, betów, bezan, bezie, bezik, bezom, beżem, beżom, beżów, bęben, bębna, bębni, bębny, bęcną, bęcnę, będąc, biada, biaks, biali, biała, białą, białe, biało, biały, biasu, biasy, bibce, bibek, bibie, bibka, bibką, bibkę, bibki, bibko, bibom, bibop, bibów, bibuł, bicia, bicie, biciu, bicza, bicze, biczu, biczy, bidak, bideł, bidet, bidle, bidła, bidło, bidłu, bidna, bidną, bidne, bidni, bidny, bidom, bidon, bidul, biduś, bidze, bieda, biedą, biedę, biedo, biedy, biedź, biega, biegi, biegł, biegu, bielą, biele, bielę, bieli, bielm, bielu, bierz, biesa, biesi, biesy, bieżą, bieżę, bieży, biffa, biffą, biffę, biffo, biffy, bigla, bigle, bigli, biglu, bigom, bigos, bigot, biguj, bijać, bijaj, bijak, bijał, bijam, bijań, bijąc, bijmy, bijże, biker, bilem, bilet, bille, billi, billu, bilom, bilon, bilów, biłam, biłaś, biłby, biłem, biłeś, bimba, bimie, bimom, bimsu, bimsy, binda, bindą, bindę, bindo, bindy, binga, bingo, bingu, biomu, biomy, biont, biorą, biorę, biosu, biosy, biota, biotą, biotę, bioto, bioty, bioza, biozą, biozę, biozo, biozy, biper, birem, biret, birra, birry, bisem, bisie, bisom, bisów, bistr, bisuj, bitce, bitej, bitek, bitem, bitew, bitka, bitką, bitkę, bitki, bitko, bitna, bitną, bitne, bitni, bitny, bitom, bitów, bitum, bitwa, bitwą, bitwę, bitwo, bitwy, bitym, biura, biuro, biuru, biurw, biust, biwak, bizie, bizom, bizon, bizun, blach, blada, bladą, blade, bladł, blado, blady, bladź, blaga, blagą, blagę, blagi, blago, blakł, blank, blant, blask, blatu, blaty, blaza, blazą, blazę, blazo, blazy, bleau, blech, bleed, blefu, blefy, blend, blich, bliki, bliku, blina, bliną, blind, blinę, blino, bliny, blizn, bliża, bliżą, bliże, bliżę, bliżo, bliży, bloga, blogi, blogu, bloki, bloku, blond, blues, bluff, bluza, bluzą, bluzę, bluzg, bluzo, bluzy, bluźń, błaga, błaha, błahą, błahe, błahy, błamu, błamy, bława, bławą, bławe, bławi, bławy, błazi, błądź, błąka, błędu, błędy, błocą, błocę, błoci, błock, błoga, błogą, błogi, błogo, błona, błoną, błonę, błoni, błono, błony, błota, błoto, błotu, błysk, bniec, bobak, bobas, bobby, bobek, bobem, bober, bobie, bobik, bobin, bobka, bobki, bobku, bobom, bobów, bobra, bobru, bobry, bobuj, bobym, bobyś, bocce, bocie, boczą, boczę, boczy, boćka, boćki, boćku, bodaj, bodąc, bodeg, bodem, bodli, bodła, bodło, bodły, bodną, bodnę, bodni, bodom, bodot, bodów, bogać, bogiń, bogom, bogów, bohem, bohru, bohry, boich, boimy, boisk, boisz, bojar, bojąc, bojce, bojek, bojem, bojer, bojka, bojką, bojkę, bojki, bojko, bojom, bojów, bojuj, bokom, boków, boksu, boksy, bolał, bolas, boląc, bolca, bolce, bolcu, boldu, boldy, bolec, boleć, bolej, bolek, bolem, boleń, boler, bolid, bolka, bolki, bolku, bolom, bolów, bolus, bomba, bombą, bombę, bombo, bomby, bomem, bomie, bomom, bomów, bonce, bonda, bondy, bonek, bonem, bonet, bonga, bongi, bongo, bongu, bonia, bonią, bonie, bonię, bonio, bonit, bonka, bonką, bonkę, bonki, bonko, bonom, bonów, bontu, bonty, bonuj, bonus, bonza, bonzą, bonzę, bonzo, bonzy, boomu, boomy, bootu, booty, boral, boran, bordo, borek, borem, borgi, borgu, borki, borku, borna, borną, borne, borni, borny, borom, borów, borta, bortą, bortę, borto, bortu, borty, boruj, borut, boryl, borze, bosak, bosch, boscy, bosej, boska, boską, boski, bosko, bosku, bossa, bossy, bosym, botek, botem, botka, botki, botku, botom, botox, botów, boyem, boyom, boyów, bozia, bozią, bozie, bozię, bozio, boziu, bozon, bożąc, bożąt, bożej, bożek, bożeń, bożka, bożki, bożku, bożyć, bożył, bożym, bójce, bójek, bójka, bójką, bójkę, bójki, bójko, bójmy, bójże, bólem, bólmy, bólom, bólów, bólże, bóstw, bóżmy, bóżże, brach, braci, braha, brahą, brahę, braho, brahy, brajl, braka, braki, braku, brali, brała, brało, brały, brama, bramą, bramę, brami, bramo, bramu, bramy, brana, braną, brand, brane, brani, brano, brany, branż, brasu, brasy, brata, bratu, bratw, braty, braun, brawa, brawo, brawu, braże, brązu, brązy, break, brech";
 
@@ -122,13 +132,13 @@ let words10 = 'siksa, siksą, siksę, sikso, siksy, silan, siląc, silem, sileń
 let words11 = 'ucapi, uchem, uchla, uchom, uchyb, uchyl, uciap, uciąć, uciąg, uciął, uciec, ucięć, ucina, ucios, ucisk, ucisz, ucząc, uczci, uczeń, uczep, uczmy, uczni, uczta, ucztą, ucztę, uczto, uczty, uczuć, uczuj, uczul, uczuł, uczyć, uczył, uczyń, uczże, udach, udają, udaje, udaję, udali, udała, udałą, udałe, udało, udały, udami, udamy, udana, udaną, udane, udani, udano, udany, udarć, udarł, udaru, udary, udasz, udecy, udeka, udeki, udeku, uderz, udkom, udław, udnic, udoić, udoił, udoją, udoje, udoję, udoju, udowa, udową, udowe, udowi, udowy, udrap, udręk, udrom, udrów, udrze, udupi, udusi, udzie, udźca, udźce, udźcu, uedom, ufają, ufali, ufała, ufało, ufały, ufamy, ufano, ufasz, ufici, ufita, ufitą, ufitę, ufito, ufity, ufnal, ufnej, ufnie, ufnym, ugada, ugasi, ugiąć, ugiął, ugier, ugięć, ugina, ugnie, ugnij, ugnoi, ugnój, ugoda, ugodą, ugodę, ugodo, ugody, ugoru, ugory, ugość, ugódź, ugrab, ugrać, ugraj, ugrał, ugram, ugrań, ugrem, ugrom, ugrów, ugryź, ugrze, uhlom, uhuru, uiści, ujada, ujadą, ujadę, ujadł, ujaić, ujaił, ujają, ujaję, ujedz, ujedź, ujemy, ujesz, ujeść, ujęci, ujęli, ujęła, ujęło, ujęły, ujęta, ujętą, ujęte, ujęto, ujęty, ujmie, ujmij, ujmom, ujmuj, ujrzą, ujrzę, ujrzy, ujscy, ujska, ujską, ujski, ujsku, ukarz, ukazu, ukazy, ukażą, ukaże, ukażę, ukąsi, ukisi, ukisł, uklei, uklej, uklep, uklęk, układ, ukłon, ukłoń, ukłuć, ukłuj, ukłuł, uknuć, uknuj, uknuł, ukoić, ukoił, ukoją, ukoję, ukolą, ukole, ukolę, ukopu, ukopy, ukorz, ukosa, ukosi, ukosu, ukosy, ukórz, ukraj, ukraś, ukres, ukręć, ukroi, ukrop, ukróć, ukrój, ukryć, ukryj, ukrył, ukuci, ukują, ukuje, ukuję, ukuli, ukuła, ukuło, ukuły, ukuta, ukutą, ukute, ukuto, ukuty, ukuwa, ukwap, ukwas, ukwaś, ulach, ulali, ulała, ulało, ulały, ulama, ulamą, ulamę, ulami, ulamo, ulamy, ulana, ulaną, ulane, ulani, ulano, ulany, ulata, ulazł, ulaże, ulażu, ulaży, ulągł, uląkł, uldze, ulecą, ulecę, uleci, ulecz, ulega, uległ, uleją, uleje, uleję, uleli, ulema, ulemą, ulemę, ulemi, ulemo, ulemy, ulena, uleną, ulenę, uleno, uleny, ulepi, ulepu, ulepy, ulewa, ulewą, ulewę, ulewo, ulewy, ulezą, ulezę, uleźć, uleżą, uleżę, uleży, ulęga, ulęgł, ulgom, ulica, ulicą, ulice, ulicę, ulico, ulicy, ulika, uliki, uliku, uliżą, uliże, uliżę, ulmin, ulotu, uloty, ulowa, ulową, ulowe, ulowi, ulowy, ultim, ulubi, ulula, ulwie, ulwom, ulżeń, ulżyć, ulżyj, ulżył, uładź, ułana, ułani, ułany, ułapi, ułatw, ułowi, ułożą, ułożę, ułoży, ułuda, ułudą, ułudę, ułudo, ułudy, ułusu, ułusy, umaić, umaił, umaja, umają, umaję, umarć, umarł, umażą, umaże, umażę, umącz, umbem, umbie, umbom, umbra, umbrą, umbrę, umbro, umbry, umęcz, umiak, umiał, umiar, umieć, umiej, umiem, umień, umila, umilą, umilę, umili, umizg, umkną, umknę, umłóć, ummie, ummom, umocz, umoru, umory, umość, umowa, umową, umowę, umowo, umowy, umórz, umówi, umrze, umyci, umyją, umyje, umyję, umyka, umyli, umyła, umyło, umyły, umysł, umyśl, umyta, umytą, umyte, umyto, umyty, umywa, uncja, uncją, uncje, uncję, uncji, uncjo, uncyj, unden, undyn, unerw, unica, unici, unieś, unika, uniki, uniku, uniom, unita, unitą, unitę, unito, unitu, unity, unizm, uniża, unosi, unosu, unosy, uosób, uowej, uowym, upada, upadł, upadu, upady, upaja, upala, upalą, upale, upalę, upali, upału, upały, uparć, uparł, upasa, upasą, upasę, upasł, upasu, upasy, upaść, upcha, upędu, upędy, upiąć, upiął, upici, upiec, upiek, upięć, upija, upiją, upije, upiję, upili, upiła, upiło, upiły, upina, upiór, upita, upitą, upite, upito, upity, upleć, upłaz, upłyń, upływ, upnie, upnij, upoić, upoił, upoją, upoje, upoję, upoju, upora, uporu, upory, uprać, uprał, uprań, upraw, upraż, uproś, uprze, upupi, upust, upuść, uracz, uradź, urala, urale, urali, uralu, uranu, urany, uraza, urazą, urazę, urazi, urazo, urazu, urazy, uraża, urażą, urażę, urąga, urągi, urągu, urdem, urdom, urdów, ureaz, ureid, urena, ureną, urenę, ureno, ureny, ureus, urguj, urial, urlop, urnie, urnom, urobi, urocz, uroda, urodą, urodę, urodo, urody, urodź, uroić, uroił, uroją, uroję, uroki, uroku, uroni, uródź, urósł, uróść, ursol, urson, ursus, urtyt, urupa, urutu, urwać, urwał, urwań, urwie, urwij, urwis, uryna, uryną, urynę, uryno, uryny, urywa, urząd, urzec, urzet, urzną, urznę, urzyn, urżną, urżnę, usadź, usiać, usiał, usiań, usiej, uskok, uskub, usłać, usłał, usłań, usług, usłuż, usmaż, usmol, usmoł, usmól, usnąć, usnął, usnuć, usnuj, usnuł, usrać, usraj, usrał, usram, usrań, ustać, ustak, ustal, ustał, ustań, ustaw, ustąp, ustęp, ustna, ustną, ustne, ustni, ustny, ustoi, ustom, ustój, usuną, usunę, ususu, ususy, ususz, usuwa, usuwu, usuwy, usypu, usypy, uszak, uszek, uszka, uszki, uszko, uszku, uszli, uszła, uszło, uszły, uszna, uszną, uszne, uszni, uszny, uszom, uszów, uszyć, uszyj, uszył, uśliń, uśnie, uśnij, uśpią, uśpić, uśpię, uśpij, uśpił, uświń, utach, utaić, utaił, utaja, utają, utaję, utami, utarć, utarg, utarł, utkać, utkaj, utkał, utkam, utkań, utkną, utknę, utkwi, utleń, utłuc, utnie, utnij, utocz, utoną, utonę, utopi, utrać, utraf, utrat, utrąć, utref, utrup, utrze, utucz, utula, utulą, utulę, utuli, utwór, utyci, utyją, utyje, utyję, utyka, utyki, utyku, utyli, utyła, utyło, utyły, utyra, utyta, utytą, utyte, utyto, utyty, uwaga, uwagą, uwagę, uwagi, uwago, uwala, uwalą, uwale, uwalę, uwali, uwału, uwały, uwarz, uważa, uwędź, uwiąd, uwiąż, uwici, uwieś, uwieź, uwięź, uwija, uwiją, uwije, uwiję, uwili, uwiła, uwiło, uwiły, uwiną, uwinę, uwita, uwitą, uwite, uwito, uwity, uwodź, uwola, uwole, uwoli, uwolu, uwozi, uwożą, uwożę, uwódź, uwroć, uzans, uzdom, uziem, uziom, uznać, uznaj, uznał, uznam, uznań, uznoi, uznój, uzusu, uzusy, uzwoi, uzwój, uzysk, użala, użalą, użalę, użali, użarć, użarł, użera, użęci, użęli, użęła, użęło, użęły, użęta, użętą, użęte, użęto, użęty, użnie, użnij, użreć, użryj, użyci, użycz, użyją, użyje, użyję, użyli, użyła, użyło, użyły, użyna, użyta, użytą, użyte, użyto, użyty, używa, wabia, wabią, wabić, wabie, wabię, wabik, wabił, wabiu, wabmy, wabże, wacha, wachą, wachę, wacho, wacht, wachy, wacie, wacik, wadem, wader, wadia, wadis, wadom, wadów, wadzą, wadze, wadzę, wadzi, wafel, wafla, wafle, wafli, waflu, wagin, wagom, wagon, wahać, wahaj, wahał, waham, wahań, wahną, wahnę, wajch, wakan, wakat, wakua, wakuj, walać, walaj, walał, walam, walań, waląc, walca, walce, walcu, walcz, walec, walem, waleń, walet, walić, walid, walił, walim, walin, waliz, walka, walką, walkę, walki, walko, walmy, walna, walną, walne, walnę, walni, walny, walom, walor, walów, walut, walże, wałcz, wałek, wałem, wałka, wałki, wałku, wałom, wałów, wałuj, wampa, wampy, wamsu, wamsy, wanad, wanda, wandą, wandę, wando, wandy, wanem, wanga, wangą, wangę, wangi, wango, wania, wanią, wanie, wanię, waniu, wanna, wanną, wannę, wanno, wanny, wanom, wanów, wanta, wantą, wantę, wanto, wanty, wańce, wańka, wańką, wańkę, wańki, wańko, wapna, wapni, wapno, wapnu, wapor, waran, warci, warcz, warem, warga, wargą, wargę, wargi, wargo, warna, warną, warnę, warno, warny, warom, warów, warsu, warsy, warta, wartą, warte, wartę, warto, warty, warug, waruj, warwa, warwą, warwę, warwo, warwy, warzą, warze, warzę, warzy, wasal, wasąg, wasza, waszą, wasze, waści, waśni, watah, watce, watek, watem, watka, watką, watkę, watki, watko, watom, watów, watra, watrą, watrę, watro, watry, watta, watty, watuj, wawel, wazce, wazek, wazie, wazka, wazką, wazkę, wazki, wazko, wazom, wazon, ważąc, ważce, ważcy, ważek, ważeń, ważka, ważką, ważkę, ważki, ważko, ważmy, ważna, ważną, ważne, ważni, ważny, ważyć, ważył, ważże, wącha, wądół, wągra, wągry, wąsal, wąscy, wąsem, wąsie, wąsik, wąska, wąską, wąski, wąsko, wąsom, wąsów, wątek, wątki, wątku, wątle, wątli, wątła, wątłą, wątłe, wątło, wątły, wątor, wątpi, wąwóz, wbici, wbiec, wbija, wbiją, wbije, wbiję, wbili, wbiła, wbiło, wbiły, wbita, wbitą, wbite, wbito, wbity, wbrew, wcale, wchód, wciąć, wciąg, wciął, wciąż, wciec, wciel, wcięć, wcina, wcios, wciry, wcisk, wczas, wczep, wczuć, wczuj, wczuł, wdają, wdaje, wdaję, wdali, wdała, wdało, wdały, wdamy, wdana, wdaną, wdane, wdani, wdano, wdany, wdarć, wdarł, wdasz, wdech, wdowa, wdową, wdowę, wdowi, wdowo, wdowy, wdrap, wdrąż, wdroż, wdrób, wdróż, wdusi, webeł, webem, weber, webie, weble, webła, webło, webłu, webom, webów, wecie, wecka, wecki, wecku, wecuj, wedet, wedle, wedrą, wedrę, wedut, wegan, wegna, wegną, wegnę, wejdą, wejdę, wejdź, wejść, wekom, weków, wekuj, welin, welon, welur, wełen, wełna, wełną, wełnę, wełno, wełny, wenie, wenom, wenta, wentą, wentę, wento, wenty, wenus, wepną, wepnę, weprą, weprę, werki, werku, werpu, werpy, wersu, wersy, werwa, werwą, werwę, werwo, werwy, wesel, wesół, wessą, wessę, wessi, wetem, wetka, wetną, wetnę, wetom, wetów, wetrą, wetrę, wetuj, wetul, wewte, wezmą, wezmę, wezwą, wezwę, wezyr, weźmy, weźże, weżną, weżnę, weżrą, weżre, weżrę, węchu, węchy, wędce, wędek, wędka, wędką, wędkę, wędki, wędko, wędom, wędzą, wędzę, wędzi, węgar, węgla, węglą, węgle, węglę, węgli, węglu, węgła, węgły, węszą, węszę, węszy, węzeł, węzie, węzin, węzła, węzły, węzom, węźle, wężem, wężom, wężów, wężsi, wężyk, wgapi, wgiąć, wgiął, wgięć, wgina, wgląd, wgłąb, wgłęb, wgoni, wgrać, wgraj, wgrał, wgram, wgrań, wgryź, wiali, wiała, wiało, wiały, wiana, wianą, wiane, wiani, wiano, wianu, wiany, wiara, wiarą, wiarę, wiaro, wiary, wiata, wiatą, wiatę, wiato, wiatr, wiaty, wiąch, wiądł, wiądu, wiądy, wiązł, wiązu, wiązy, wiążą, wiąże, wiążę, wiccy, wicek, wicem, wichr, wicia, wicią, wicie, wicin, wiciu, wicka, wicką, wicki, wicku, wicom, wiców, widać, widea, wideł, widem, wideo, widet, wideu, widia, widią, widie, widię, widii, widio, widły, widma, widmo, widmu, widna, widną, widne, widni, widno, widny, widok, widom, widów, widuj, widyj, widza, widzą, widze, widzę, widzi, widzu, wiece, wiech, wiecu, wiedz, wiedź, wieja, wieją, wieje, wieję, wiejo, wieka, wieki, wieko, wieku, wielb, wiele, wieli, wielu, wiemy, wierć, wierz, wiesz, wieść, wiewa, wiewu, wiewy, wieźć, wieża, wieżą, wieże, wieżę, wieżo, wieży, więzi, więzy, więźb, więżą, więżę, wigna, wigną, wignę, wigno, wigny, wigom, wigoń, wigor, wigów, wihar, wijąc, wijem, wijmy, wijom, wijów, wijże, wikła, wiktu, wikty, wilca, wilce, wilcu, wilcy, wilec, wilga, wilgą, wilgę, wilgi, wilgł, wilgo, wilia, wilią, wilie, wilię, wilii, wilij, wilio, wilka, wilki, wilku, willa, willą, wille, willę, willi, willo, wilżą, wilżę, wilży, wiłam, wiłaś, wiłby, wiłem, wiłeś, wiłom, wiłów, winda, windą, windę, windo, windy, winek, winem, winią, winić, winie, winię, winił, winka, winko, winku, winna, winną, winne, winni, winno, winny, winom, winta, winty, winyl, wińca, wińce, wińcu, wińmy, wińsk, wińże, wioch, wiodą, wiodę, wiola, wiolą, wiole, wiolę, wioli, wiolo, wioną, wionę, wiozą, wiozę, wiódł, wióra, wióry, wiózł, wiraż, wirek, wirem, wirka, wirki, wirku, wirom, wiroz, wirów, wiruj, wirus, wirze, wisem, wisie, wisom, wisów, wista, wistr, wistu, wisty, wisus, wiszą, wiszę, wiśmy, wiśni, wiśta, wiśże, witać, witaj, witał, witam, witań, witce, witej, witek, witeź, witka, witką, witkę, witki, witko, witwa, witwą, witwę, witwo, witwy, witym, witza, witze, witzu, wiwat, wiwer, wizaż, wizgi, wizgu, wizie, wizja, wizją, wizje, wizję, wizji, wizjo, wizom, wizon, wizuj, wizur, wizyj, wizyr, wizyt, wjadą, wjadę, wjazd, wjedź, wklei, wklej, wklep, wkład, wkłuć, wkłuj, wkłuł, wkolą, wkole, wkolę, wkoło, wkopu, wkopy, wkraj, wkręć, wkręt, wkroi, wkrop, wkrój, wkuci, wkują, wkuje, wkuję, wkula, wkulą, wkulę, wkuli, wkuła, wkuło, wkuły, wkupi, wkupu, wkupy, wkurw, wkurz, wkuta, wkutą, wkute, wkuto, wkuty, wkuwa, wlali, wlała, wlało, wlały, wlana, wlaną, wlane, wlani, wlano, wlany, wlazę, wlazł, wlecą, wlecę, wleci, wlecz, wleją, wleje, wleję, wleką, wlekę, wlekł, wleli, wlepi, wlewa, wlewu, wlewy, wlezą, wlezę, wleźć';
 let words12 = 'wlicz, wloką, wlokę, wlotu, wloty, wlókł, włada, władz, włamu, włamy, włazi, włazu, włazy, włażą, włażę, włącz, włoce, włoka, włoką, włokę, włoki, włoko, włoku, włomu, włomy, włosa, włosi, włosy, włość, włożą, włożę, włoży, włóce, włócz, włóka, włóką, włókę, włóki, włóko, włóku, włósi, włupi, wmieć, wmieś, wmota, wmówi, wmusi, wmyci, wmyją, wmyje, wmyję, wmyka, wmyli, wmyła, wmyło, wmyły, wmyśl, wmyta, wmytą, wmyte, wmyto, wmyty, wnerw, wnęca, wnęcą, wnęce, wnęcę, wnęci, wnęka, wnęką, wnękę, wnęki, wnęko, wnieś, wnika, wnosi, wnuce, wnuka, wnuką, wnukę, wnuki, wnuko, wnuku, wnurz, wnusi, wnyka, wnyki, wnyku, woale, woali, woalu, wobec, wobeł, woble, wobła, wobłą, wobłę, wobło, wobły, wodna, wodną, wodne, wodni, wodny, wodom, wodór, woduj, wodza, wodzą, wodze, wodzę, wodzi, wodzo, wodzu, wodzy, wojak, wojaż, wojem, wojen, wojna, wojną, wojnę, wojno, wojny, wojom, wojów, wojsk, wojuj, wokal, wokom, wokół, woków, wolak, wolał, woląc, wolca, wolce, wolcu, wolec, woleć, wolej, wolem, woleń, wolim, wolin, wolna, wolną, wolne, wolni, wolno, wolny, wolom, wolta, woltą, woltę, wolto, wolty, wolut, wołać, wołaj, wołał, wołam, wołań, wołek, wołem, wołga, wołgą, wołgę, wołgi, zabaw, zabić, zabij, zabił, zabój, zaból, zabór, zabul, zaceń, zacna, zacną, zacne, zacni, zacny, zaćma, zaćmą, zaćmę, zaćmi, zaćmo, zaćmy, zaćpa, zadać, zadaj, zadał, zadam, zadań, zadąć, zadął, zadba, zadek, zadem, zader, zadęć, zadka, zadki, zadku, zadmą, zadmę, zadni, zadom, zadów, zadra, zadrą, zadrę, zadro, zadry, zadum, zaduś, zadym, zafra, zafrą, zafrę, zafro, zafry, zagai, zagaj, zagap, zagaś, zagiń, zagna, zagną, zagnę, zagoi, zagon, zagoń, zagój, zagra, zagub, zaira, zairy, zajad, zając, zająć, zajął, zajda, zajdą, zajdę, zajdo, zajdy, zajdź, zajeb, zajem, zajęć, zajmą, zajmę, zajmu, zajmy, zajob, zajść, zakał, zakat, zakaz, zakaź, zakaż, zakąś, zakip, zakiś, zakol, zakon, zakop, zakos, zakoś, zakpi, zakuć, zakuj, zakuł, zakup, zalać, zalał, zalań, zaląc, zalec, zaleć, zalej, zalep, zaleś, zalet, zalew, zaleź, zależ, zaliż, załam, załap, załaź, załga, załka, załom, załóg, załóż, załup, załżą, załże, załżę, zamaż, zamąć, zamek, zamęt, zamia, zamią, zamie, zamię, zamii, zamij, zamio, zamka, zamki, zamku, zamów, zamrą, zamrę, zamsz, zamul, zanan, zandr, zanęć, zanęt, zanik, zanim, zaniż, zanni, zanoś, zanuć, zaorz, zapad, zapal, zapał, zapas, zapaś, zapęd, zapić, zapij, zapił, zapis, zapną, zapnę, zapoć, zapon, zapól, zapór, zaprą, zaprę, zapyl, zarań, zaraz, zaraź, zarąb, zareb, zarib, zaroi, zaroś, zarób, zaród, zarój, zarwą, zarwę, zaryb, zaryć, zaryj, zarył, zaryp, zarys, zarżą, zarżę, zarży, zasad, zasap, zasęp, zasie, zasię, zasil, zasną, zasnę, zasób, zasól, zaspa, zaspą, zaspę, zaspo, zaspy, zasra, zassą, zassę, zasuń, zasuw, zasyć, zasyf, zasyp, zaśby, zaślą, zaśle, zaślę, zaśpi, zatai, zataj, zatem, zatęż, zatka, zatlą, zatlę, zatli, zatną, zatnę, zatok, zatoń, zatop, zator, zatrą, zatrę, zatul, zatup, zaufa, zaumu, zaumy, zawad, zawal, zawał, zaważ, zawdy, zawęź, zawii, zawij, zawiń, zawis, zawoź, zawód, zawój, zawór, zawóź, zawrą, zawre, zawrę, zawyć, zawyj, zawył, zawyż, zazen, zazęb, zazna, zazul, zaźga, zażec, zażeż, zażga, zażgą, zażgę, zażrą, zażre, zażrę, zażyć, zażyj, zażył, zażże, ząbek, ząbka, ząbki, ząbku, zbada, zbawi, zbądź, zbecz, zbędą, zbędę, zbici, zbiec, zbieg, zbieś, zbija, zbiją, zbije, zbiję, zbili, zbiła, zbiło, zbiły, zbiór, zbira, zbiry, zbita, zbitą, zbite, zbito, zbity, zbliż, zbocz, zboin, zboru, zbory, zboża, zboże, zbożu, zbója, zbóje, zbóju, zbroi, zbrój, zbryl, zbudź, zbuja, zbuka, zbuki, zbuku, zburz, zbyci, zbyli, zbyła, zbyło, zbyły, zbyta, zbytą, zbyte, zbyto, zbytu, zbyty, zbywa, zdają, zdaje, zdaję, zdali, zdała, zdało, zdały, zdamy, zdana, zdaną, zdane, zdani, zdano, zdany, zdarć, zdarł, zdarz, zdasz, zdąża, zdążą, zdążę, zdąży, zdeba, zdebi, zdeby, zdejm, zderz, zdjąć, zdjął, zdjęć, zdław, zdobi, zdoić, zdoił, zdoją, zdoję, zdoła, zdrad, zdrap, zdrój, zdrów, zduna, zduni, zduny, zdusi, zdwoi, zdwój, zdysz, zdzir, zdziw, zdżar, zebra, zebrą, zebrę, zebro, zebry, zecer, zecie, zedrą, zedrę, zefir, zegar, zegna, zegną, zegnę, zejdą, zejdę, zejdź, zejść, zekom, zeków, zelom, zelów, zeluj, zelżą, zelżę, zelży, zełga, zełżą, zełże, zełżę, zemną, zemnę, zemrą, zemrę, zemst, zenan, zendr, zenem, zenie, zenit, zenom, zenów, zenza, zenzą, zenzę, zenzo, zenzy, zepną, zepnę, zereb, zerem, zerib, zerka, zerom, zeruj, zerwa, zerwą, zerwę, zerwo, zerwy, zerze, zesra, zesuń, zesyp, ześlą, ześle, ześlę, zetem, zetlą, zetlę, zetli, zetną, zetnę, zetom, zetor, zetów, zetrą, zetrę, zeusa, zeusy, zewem, zewie, zewom, zewów, zewrą, zewrę, zezem, zezie, zezik, zezna, zezom, zezów, zezuć, zezuj, zezuł, zeźlą, zeźlę, zeźli, zeżną, zeżnę, zeżrą, zeżre, zeżrę, zębak, zębca, zębce, zębcu, zębem, zębie, zębin, zębna, zębną, zębne, zębni, zębny, zębom, zębów, zęzie, zęzom, zgada, zgadł, zgaga, zgagą, zgagę, zgagi, zgago, zgala, zgani, zgapi, zgarb, zgaru, zgary, zgasi, zgasł, zgęść, zgiąć, zgiął, zgięć, zgina, zginą, zginę, zgleb, zgład, zgłąb, zgłęb, zgłoś, zgnać, zgnaj, zgnał, zgnam, zgnań, zgnęb, zgnić, zgnij, zgnił, zgnoi, zgnój, zgoda, zgodą, zgodę, zgodo, zgody, zgoić, zgoił, zgoją, zgoję, zgolą, zgolę, zgoli, zgoła, zgoni, zgonu, zgony, zgódź, zgrab, zgrać, zgrai, zgraj, zgrał, zgram, zgrań, zgred, zgręz, zgrom, zgróz, zgrub, zgryw, zgryz, zgryź, zguba, zgubą, zgubę, zgubi, zgubo, zguby, zgurb, zhańb, zhasa, zhula, ziają, ziaje, ziaję, ziali, ziała, ziało, ziały, ziano, ziarn, ziąbł, ziąbu, ziąby, zieją, zieje, zieję, ziela, ziele, zieli, zielu, ziemi, ziewa, ziewu, ziewy, zięba, ziębą, ziębę, ziębi, ziębl, ziębł, ziębo, zięby, zijad, zikra, zikry, ziłem, ziłom, ziłów, zimie, zimna, zimną, zimne, zimni, zimno, zimnu, zimny, zimom, zimuj, zineb, zinem, zinie, zinom, zinów, ziole, zioła, zioło, ziołu, zioną, zionę, zipać, zipał, zipań, zipem, zipią, zipie, zipię, zipmy, zipną, zipnę, zipom, zipów, zipże, ziram, zisem, zisie, zisom, zisów, ziści, zjada, zjadą, zjadę, zjadł, zjara, zjawa, zjawą, zjawę, zjawi, zjawo, zjawy, zjazd, zjedz, zjedź, zjemy, zjesz, zjeść, zjeża, zjeżą, zjeżę, zjeży, zlali, zlała, zlało, zlały, zlana, zlaną, zlane, zlani, zlano, zlany, zlata, zlazę, zlazł, zląkł, zleca, zlecą, zlecę, zleci, zległ, zleją, zleje, zleję, zleli, zlepi, zlepu, zlepy, zlewa, zlewą, zlewę, zlewo, zlewu, zlewy, zlezą, zlezę, zleźć, zleżą, zleżę, zleży, zlicz, zlisi, zliżą, zliże, zliżę, zlotu, zloty, złach, zładu, złady, złaja, złają, złaje, złaję, złajo, złami, złasi, złazi, złazu, złazy, złażą, złażę, złącz, złego, złemu, złocą, złocę, złoci, złogi, złogu, złoić, złoił, złoją, złoję, złomu, złomy, złość, złota, złotą, złote, złoto, złotu, złoty, złowi, złoża, złożą, złoże, złożę, złożu, złoży, złuda, złudą, złudę, złudo, złudy, złudź, złupi, złych, złymi, zmaca, zmaga, zmami, zmarć, zmarł, zmaza, zmazą, zmazę, zmazo, zmazy, zmażą, zmaże, zmażę, zmąca, zmącą, zmącę, zmąci, zmełł, zmęcz, zmian, zmiąć, zmiął, zmieć, zmiel, zmień, zmięć, zmięk, zmłóć, zmocz, zmogą, zmogę, zmora, zmorą, zmorę, zmoro, zmory, zmota, zmowa, zmową, zmowę, zmowo, zmowy, zmoże, zmógł, zmókł, zmórz, zmówi, zmrok, zmroź, zmróź, zmruż, zmusi, zmyci, zmydl, zmyją, zmyje, zmyję, zmyka, zmyla, zmylą, zmylę, zmyli, zmyła, zmyło, zmyły, zmysł, zmyśl, zmyta, zmytą, zmyte, zmyto, zmyty, zmywa, zmywu, zmywy, znacz, znade, znają, znajd, znaki, znaku, znale, znali, znalu, znała, znało, znały, znamy, znana, znaną, znane, znani, znano, znany, znasz, znęca, znęcą, znęcę, znęci, znęka, znicz, znieś, znika, znikł, zniża, zniżą, zniżę, zniży, znoić, znoił, znoją, znoje, znoję, znoju, znosi, znosu, znosy, znowu, znudź, znużą, znużę, znuży, zoczą, zoczę, zoczy, zofii, zoila, zoile, zoili, zoilu, zoizm, zolem, zolom, zolów, zołza, zołzą, zołzę, zołzo, zołzy, zombi, zonda, zondą, zondę, zondo, zondy, zonie, zonom, zooid, zooma, zoomu, zoomy, zorać, zorał, zorań, zorba, zorbą, zorbę, zorbo, zorby, zoruj, zorza, zorzą, zorze, zorzę, zorzo, zorzy, zośce, zośka, zośką, zośkę, zośki, zośko, zowąd, zowią, zowie, zowię, zozul, zradl, zrani, zraza, zrazi, zrazu, zrazy, zraża, zrażą, zrażę, zredl, zrębu, zręby, zrobi, zroby, zrodź, zrosi, zrost, zródź, zrósł, zróść, zruca, zrucą, zrucę, zruci, ździr, źgają, źgali, źgała, źgało, źgały, źgamy, źgana, źganą, źgane, źgani, źgano, źgany, źgasz, źgnąć, źgnął, źgnie, źgnij, źrebi, źrebu, źreby, żabce, żabci, żabek, żabia, żabią, żabie, żabim, żabka, żabką, żabkę, żabki, żabko, żabom, żabot, żabsk, żabuń, żabuś, żacha, żachw, żadem, żaden, żadna, żadną, żadne, żadni, żadom, żadów, żagar, żagla, żagle, żagli, żaglu, żagwi, żakom, żaków, żaląc, żalem, żaleń, żalić, żalił, żalmy, żalna, żalną, żalne, żalni, żalny, żalom, żalów, żalże, żałób, żałuj, żanru, żanry, żarci, żareł, żarem, żaren, żarle, żarli, żarła, żarło, żarłu, żarły, żarna, żarną, żarne, żarni, żarny, żarom, żarów, żarta, żartą, żarte, żarto, żartu, żarty, żarzą, żarze, żarzę, żarzy, żądać, żądaj, żądał, żądam, żądań, żądeł, żądlą, żądle, żądlę, żądli, żądła, żądło, żądłu, żądna, żądną, żądne, żądni, żądny, żądza, żądzą, żądze, żądzę, żądzo, żądzy, żąłby, żąłem, żąłeś, żąpia, żąpie, żąpiu, żbika, żbiki, żbiku, żeber, żebra, żebro, żebru, żebry, żebrz, żebym, żebyś, żebyż, żegna, żegot, żelaz, żelce, żelek, żelem, żeliw, żelka, żelką, żelkę, żelki, żelko, żelku, żelom, żelów, żeluj, żenad, żenet, żenią, żenić, żenię, żenił, żenuj, żeńca, żeńce, żeńcu, żeńcy, żeńmy, żeńże, żerdź, żerem, żerna, żerną, żerne, żerni, żerny, żerom, żerów, żertw, żeruj, żerze, żeton, żęcia, żęcie, żęciu, żęłam, żęłaś, żętej, żętyc, żętym, żgają, żgali, żgała, żgało, żgały, żgamy, żgana, żganą, żgane, żgani, żgano, żgany, żgasz, żgnąć, żgnął, żgnie, żgnij, żlebu, żleby, żłoba, żłobi, żłobu, żłoby, żmąca, żmącą, żmące, żmący, żmija, żmiją, żmije, żmiję, żmijo, żmind, żmuda, żmudą, żmudę, żmudo, żmudy, żnąca, żnącą, żnące, żnący, żniwa, żniwo, żniwu, żołdu, żołdy, żołna, żołną, żołnę, żołno, żołny, żompi, żonce, żonek, żonie, żonin, żonka, żonką, żonkę, żonki, żonko, żonom, żonuń, żonuś, żożob, żółcą, żółcę, żółci, żółkł, żółta, żółtą, żółte, żółto, żółty, żółwi, żrąca, żrącą, żrące, żrąco, żrący, żremy, żresz, żuawa, żuawi, żuawy, żubra, żubry, żuchw, żucia, żucie, żuciu, żując, żujmy, żujże, żukom, żuków, żulem, żulia, żulią, żulie, żulię, żulii, żulij, żulik, żulio, żulom, żulów, żułam, żułaś, żuław, żułby, żułem, żułeś, żupan, żupie, żupna, żupną, żupne, żupni, żupny, żupom, żuraw, żurek, żurem, żurki, żurku, żurom, żurów, żurze, żutej, żutym, żuwce, żuwek, żuwka, żuwką, żuwkę, żuwki, żuwko, żuwna, żuwną, żuwne, żuwnę, żuwni, żuwno, żuwny, żużel, żużla, żużle, żużli, żużlu, żwacz, żwawa, żwawą, żwawe, żwawi, żwawo, żwawy, żwiru, żwiry, życia, życic, życie, życiu, życzą, życzę, życzy, żydek, żydem, żydka, żydki, żydku, żydom, żydów, żydzi, żyjąc, żyjmy, żyjże, żylak, żylet, żylna, żylną, żylne, żylni, żylny, żyłam, żyłaś, żyłby, żyłce, żyłek, żyłem, żyłeś, żyłka, żyłką, żyłkę, żyłki, żyłko, żyłom, żyłuj, żyraf, żyrat, żyrau, żyrem, żyrom, żyruj, żyrze, żytek, żytem, żytka, żytko, żytku, żytna, żytną, żytne, żytni, żytny, żytom, żywca, żywce, żywcu, żywej, żywią, żywic, żywić, żywię, żywik, żywił, żywmy, żywna, żywną, żywne, żywni, żywny, żywot, żywsi, żywym, żywże, żyzna, żyzną, żyzne, żyzny, żyźni';
 
-let added = 'brzeg, szkło, kurka, tykwa, konto'; //tutaj dopisuj brakujące wyrazy
+let added = 'brzeg, szkło, kurka, tykwa, konto, kusza'; //tutaj dopisuj brakujące wyrazy
 let Words = (words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort();
-console.log(Words.length);
+//console.log(Words.length);
 //words=words.replace('\n', ',').replace(',,',',').split(',');
 let WordsReset = Words;
 
-console.log((words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort().join(' '));
+// console.log((words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort().join(' '));
 
 function reset() {
 	Words = (words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort()
@@ -140,6 +150,8 @@ function reset() {
 
 	for (let i = 0; i < 5; i++) {
 		inp[i].value = ''
+		inp[i].classList.remove('full')
+		inp[i].readOnly = false
 	}
 
 }
@@ -174,6 +186,7 @@ for (let i = 0; i < letters.length; i++) {
 
 
 				list.innerHTML = Words.join(' ');
+				isEmpty()
 			}
 
 		} else if (check.checked) {
@@ -197,7 +210,7 @@ for (let i = 0; i < letters.length; i++) {
 				}
 
 				list.innerHTML = Words.join(' ');
-
+				isEmpty()
 			}
 		}
 	});
@@ -206,15 +219,131 @@ for (let i = 0; i < letters.length; i++) {
 }
 
 
+// let childs
+// function fn(){
+// for(let i=0; i<5; i++){
+// 	if(!inputs.children[i].classList.contains("full"))
+// 	childs[i]=inputs[i]
+// }
+// }
+
+// inp[0].addEventListener('keyup', e => {fn()
+// 	if (e.key == 'ArrowRight') {
+// 		childs[0].nextElementSibling.focus()
+// 	}
+// 	if (e.key == 'ArrowLeft') {
+// 		childs[0].previousElementSibling.focus()
+// 	}
+// })
+// inp[1].addEventListener('keyup', e => {fn()
+// 	if (e.key == 'ArrowRight') {
+// 		childs[1].nextElementSibling.focus()
+// 	}
+// 	if (e.key == 'ArrowLeft') {
+// 		childs[1].previousElementSibling.focus()
+// 	}
+// })
+// inp[2].addEventListener('keyup', e => {fn()
+// 	if (e.key == 'ArrowRight') {
+// 		childs[2].nextElementSibling.focus()
+// 	}
+// 	if (e.key == 'ArrowLeft') {
+// 		childs[2].previousElementSibling.focus()
+// 	}
+// })
+// inp[3].addEventListener('keyup', e => {fn()
+// 	if (e.key == 'ArrowRight') {
+// 		childs[3].nextElementSibling.focus()
+// 	}
+// 	if (e.key == 'ArrowLeft') {
+// 		childs[3].previousElementSibling.focus()
+// 	}
+// })
+// inp[4].addEventListener('keyup', e => {fn()
+// 	if (e.key == 'ArrowRight') {
+// 		childs[4].nextElementSibling.focus()
+// 	}
+// 	if (e.key == 'ArrowLeft') {
+// 		childs[4].previousElementSibling.focus()
+// 	}
+// })
+
+inp[0].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		inputs.children[1].focus()
+	}
+	if (e.key == 'ArrowLeft') {
+		inputs.children[4].focus()
+	}
+})
+inp[1].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		inputs.children[2].focus()
+	}
+	if (e.key == 'ArrowLeft') {
+		inputs.children[0].focus()
+	}
+})
+inp[2].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		inputs.children[3].focus()
+	}
+	if (e.key == 'ArrowLeft') {
+		inputs.children[1].focus()
+	}
+})
+inp[3].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		inputs.children[4].focus()
+	}
+	if (e.key == 'ArrowLeft') {
+		inputs.children[2].focus()
+	}
+})
+inp[4].addEventListener('keyup', e => {
+	if (e.key == 'ArrowRight') {
+		inputs.children[0].focus()
+	}
+	if (e.key == 'ArrowLeft') {
+		inputs.children[3].focus()
+	}
+})
+
+
+//nie działa, nwm czemu, wyżej lepsza wersja
+// function focusfn(e) {
+// 	console.log('slice ', e.slice(3));
+
+// 	let ev = e.slice(3)
+
+// 	inp[ev].addEventListener('keyup', event => {
+// 		if (event.key == 'ArrowRight') {
+// 			inputs.children[ev + 1].focus()
+// 		}
+// 		console.log('aaa', ev);
+// 		console.log('eee', e);
+
+// 		if (event.key == 'ArrowLeft') {
+// 			inputs.children[ev - 1].focus()
+// 		}
+
+
+// 	})
+
+
+
+
 
 for (let i = 0; i < inp.length; i++) {
 	inp[i].addEventListener('input', ev => {
 		let j = 0;
 
-
 		for (word of Words) {
 			if (word.charAt(i) !== inp[i].value) {
 				word = ' ';
+
+				inp[i].classList.add('full')
+				inp[i].readOnly = true
 
 			}
 
@@ -224,9 +353,13 @@ for (let i = 0; i < inp.length; i++) {
 		for (let k = 0; k < letters.length; k++) {
 			if (letters[k].id == inp[i].value) letters[k].classList.add('position');
 			//console.log(letters[k].id);
+
 		}
 
 		list.innerHTML = Words.join(' ');
+
+		isEmpty()
+
 
 	});
 }

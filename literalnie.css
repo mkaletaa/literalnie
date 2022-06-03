@@ -16,14 +16,47 @@
 
 .lack {
     background: gray;
+    animation: colorgray 1s;
+}
+
+@keyframes colorgray {
+    from {
+        background: white;
+    }
+
+    to {
+        background: gray
+    }
 }
 
 .thereIs {
     background: yellow;
+    animation: coloryellow 1s;
+}
+
+@keyframes coloryellow {
+    from {
+        background: white;
+    }
+
+    to {
+        background: yellow
+    }
 }
 
 .position {
     background: rgb(103, 161, 15);
+    animation: colorgreen 1s;
+}
+
+@keyframes colorgreen {
+    from {
+        background: white;
+    }
+
+    to {
+        background: rgb(103, 161, 15);
+    }
 }
 
 #zeroth-row {
@@ -145,18 +178,41 @@ input:checked+.slider:before {
 #inputs {
 
     margin-top: 100px;
-
+    justify-content: center;
     display: flex;
     width: 20%;
 
 }
 
 .inp {
-    width: 30px;
+    width: 32px;
     height: 50px;
+    margin-right: 5px;
+    background-color: transparent;
 
+    justify-content: space-between;
     font-size: 40px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid black;
+    border-radius: 5px 5px 0 0;
+}
+
+.inp:hover {
+    background-color: lightgrey;
+}
+
+.inp:focus {
+    outline: none;
+}
+
+.full {
+    background-color: rgb(103, 161, 15);
+    border-top: 1px solid rgb(103, 161, 15);
+    border-left: 1px solid rgb(103, 161, 15);
+    border-right: 1px solid rgb(103, 161, 15);
 }
 
 #reset {
