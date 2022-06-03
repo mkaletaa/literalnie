@@ -286,13 +286,15 @@ for (let i = 0; i < inp.length; i++) {
 	});
 
 	inp[i].addEventListener('input', ev => {
-		//let char = ev.data.charCodeAt(0)
+
 
 		if (/[a-zA-Z]/.test(ev.currentTarget.value)) {
 
+			inp[i].value = ev.currentTarget.value.toLowerCase()
+
 			let j = 0;
 			for (word of Words) {
-				if (word.charAt(i) !== inp[i].value) {
+				if (word.charAt(i) !== ev.currentTarget.value.toLowerCase()) {
 					word = ' ';
 
 					inp[i].classList.add('full')
