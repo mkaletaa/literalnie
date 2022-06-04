@@ -1,5 +1,15 @@
+:root {
+    --yellow: gold;
+    --green: #7fff00;
+    --gray: lightslategrey;
+}
+
+body {
+    background: linear-gradient(89deg, #d53369 0%, #daae51 100%);
+}
+
 .letter {
-    background: gainsboro;
+    background: cornsilk;
     border-radius: 5px;
     width: 40px;
     height: 50px;
@@ -12,50 +22,75 @@
 
 .letter:hover {
     cursor: pointer;
+    background-color: wheat;
 }
 
 .lack {
-    background: gray;
+    background-color: var(--gray);
     animation: colorgray 1s;
+    color: rgb(193, 193, 193);
+}
+
+.lack:hover {
+    cursor: default;
+    background-color: var(--gray);
 }
 
 @keyframes colorgray {
     from {
-        background: white;
+        background: aliceblue;
+        color: white;
     }
 
     to {
-        background: gray
+        background: var(--gray);
+        color: rgb(193, 193, 193);
     }
 }
 
 .thereIs {
-    background: yellow;
+    background-color: var(--yellow);
     animation: coloryellow 1s;
+    color: wheat;
+}
+
+.thereIs:hover {
+    cursor: default;
+    background-color: var(--yellow);
 }
 
 @keyframes coloryellow {
     from {
-        background: white;
+        background: aliceblue;
+        color: white;
     }
 
     to {
-        background: yellow
+        background: var(--yellow);
+        color: wheat;
     }
 }
 
 .position {
-    background: rgb(103, 161, 15);
+    background: var(--green);
     animation: colorgreen 1s;
+    color: mediumseagreen
+}
+
+.position:hover {
+    cursor: default;
+    background: var(--green);
 }
 
 @keyframes colorgreen {
     from {
-        background: white;
+        background: aliceblue;
+        color: aliceblue
     }
 
     to {
-        background: rgb(103, 161, 15);
+        background: var(--green);
+        color: mediumseagreen
     }
 }
 
@@ -91,15 +126,25 @@
 
 #words {
     border: 1px solid black;
+    padding: 10px;
+    font-family: "arial", Times, serif;
     width: 86%;
+    text-align: justify;
     margin-left: 7%;
     margin-right: 7%;
     margin-top: 10px;
     margin-bottom: 10px;
     resize: vertical;
     overflow: auto;
+    overflow-x: hidden;
     word-wrap: break-word;
     min-height: 100px;
+}
+
+.empty {
+    color: red;
+    text-align: center;
+    font-size: 30px;
 }
 
 /* The switch - the box around the slider */
@@ -128,7 +173,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: gray;
+    background-color: var(--gray);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -140,17 +185,17 @@
     width: 36px;
     left: 10px;
     bottom: 7px;
-    background-color: white;
+    background-color: cornsilk;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: yellow;
+    background-color: var(--yellow);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px yellow;
+    box-shadow: 0 0 1px var(--yellow);
 }
 
 input:checked+.slider:before {
@@ -171,7 +216,7 @@ input:checked+.slider:before {
 #con {
     width: 40%;
     margin: auto;
-    background-color: burlywood;
+    /* background-color: burlywood; */
     display: block;
 }
 
@@ -186,10 +231,11 @@ input:checked+.slider:before {
 
 .inp {
     width: 32px;
-    height: 50px;
+    height: 45px;
     margin-right: 5px;
     background-color: transparent;
-
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
     justify-content: space-between;
     font-size: 40px;
     /* border-radius: 5px; */
@@ -198,31 +244,59 @@ input:checked+.slider:before {
     border-right: none;
     border-bottom: 3px solid black;
     border-radius: 5px 5px 0 0;
+
+    vertical-align: sub;
+    line-height: 50px;
+    /* transition: background .5s; */
 }
 
+
 .inp:hover {
-    background-color: lightgrey;
+    background: linear-gradient(180deg, transparent 23%, lightgray 100%);
 }
+
+
 
 .inp:focus {
     outline: none;
+    background: linear-gradient(180deg, transparent 23%, lightgray 100%);
 }
 
 .full {
-    background-color: rgb(103, 161, 15);
-    border-top: 1px solid rgb(103, 161, 15);
-    border-left: 1px solid rgb(103, 161, 15);
-    border-right: 1px solid rgb(103, 161, 15);
+
+    background: linear-gradient(180deg, transparent 23%, var(--green) 100%);
+}
+
+.full:hover {
+    background: linear-gradient(180deg, transparent 23%, var(--green) 100%);
+    cursor: default;
+}
+
+.full:focus {
+    background: linear-gradient(180deg, transparent 23%, var(--green) 100%);
+    cursor: default;
 }
 
 #reset {
     height: 50px;
     width: 70px;
+    border-color: #f44336;
+    color: maroon;
+    font-size: 20px;
+    border-radius: 10%;
+    background-color: transparent;
+    /* background: linear-gradient(90deg, #d53369 0%, #daae51 100%); */
+}
+
+#reset:hover {
+    cursor: pointer;
+    background: #f44336;
+    color: white;
 }
 
 #right {
     display: flexbox;
-    background-color: blueviolet
+    /* background-color: blueviolet */
 }
 
 
@@ -340,11 +414,11 @@ input:checked+.slider:before {
 
 /* Style each tab content individually */
 #London {
-    background-color: red;
+    background-color: rgb(255, 196, 0);
 }
 
 #Paris {
-    background-color: green;
+    background-color: var(--green);
 }
 
 #Tokyo {
@@ -368,17 +442,18 @@ input:checked+.slider:before {
     100% {opacity:0 ;}
   } */
 
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
 
     10% {
-        opacity: 1;
+        opacity: .9;
     }
 
     90% {
-        opacity: 1;
+        opacity: .9;
     }
 
     100% {
