@@ -5,6 +5,7 @@ const napis = document.querySelector('#napis');
 const inp = document.querySelectorAll('.inp');
 const popup = document.querySelector('#popup');
 const inputs = document.querySelector('#inputs');
+const tablinks = document.querySelectorAll(".tablink")
 
 function alertfn() {
 	popup.style.cssText = `
@@ -28,7 +29,7 @@ window.onclick = function (event) {
 	}
 }
 
-function openTab(cityName, elmnt, color) {
+function openTab(tab, elmnt, color) {
 	// Hide all elements with class="tabcontent" by default */
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
@@ -43,7 +44,7 @@ function openTab(cityName, elmnt, color) {
 	}
 
 	// Show the specific tab content
-	document.getElementById(cityName).style.display = "block";
+	document.getElementById(tab).style.display = "block";
 
 	// Add the specific color to the button used to open the tab content
 	elmnt.style.backgroundColor = color;
@@ -284,18 +285,25 @@ for (let i = 0; i < letters.length; i++) {
 
 
 
-
+//inputy
 
 for (let i = 0; i < inp.length; i++) {
 	inp[i].addEventListener("beforeinput", e => {
 		e.currentTarget.previousValue = e.currentTarget.value;
+
 	});
 
 	inp[i].addEventListener('input', ev => {
 		//console.log('ev ',ev.currentTarget.value);
+		console.log(ev.currentTarget.value); //litera
 
-
-		if (/[a-zA-Z]/.test(ev.currentTarget.value)) {
+		for (let i = 0; i < letters.length; i++) {
+			if (letters[i].id == ev.currentTarget.value && letters[i].classList.contains('lack')) {
+				ev.currentTarget.value = ''
+				alertfn()
+			}
+		}
+		if (/[a-zA-Z]{1}/.test(ev.currentTarget.value)) {
 
 			inp[i].value = ev.currentTarget.value.toLowerCase()
 
@@ -316,6 +324,7 @@ for (let i = 0; i < inp.length; i++) {
 				if (letters[k].id == inp[i].value) letters[k].classList.add('position');
 			}
 			list.innerHTML = Words.join(' ');
+			list.style.height = "auto"
 			isEmpty()
 		} else {
 			ev.currentTarget.value = ev.currentTarget.previousValue;

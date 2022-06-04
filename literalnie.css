@@ -51,7 +51,7 @@ body {
 .thereIs {
     background-color: var(--yellow);
     animation: coloryellow 1s;
-    color: wheat;
+    color: rgb(198, 129, 1);
 }
 
 .thereIs:hover {
@@ -67,14 +67,14 @@ body {
 
     to {
         background: var(--yellow);
-        color: wheat;
+        color: rgb(198, 129, 1);
     }
 }
 
 .position {
     background: var(--green);
     animation: colorgreen 1s;
-    color: mediumseagreen
+    color: black
 }
 
 .position:hover {
@@ -90,7 +90,7 @@ body {
 
     to {
         background: var(--green);
-        color: mediumseagreen
+        color: black
     }
 }
 
@@ -126,6 +126,7 @@ body {
 
 #words {
     border: 1px solid black;
+    border-radius: 8px;
     padding: 10px;
     font-family: "arial", Times, serif;
     width: 86%;
@@ -142,7 +143,7 @@ body {
 }
 
 .empty {
-    color: red;
+    color: var(--yellow);
     text-align: center;
     font-size: 30px;
 }
@@ -299,7 +300,12 @@ input:checked+.slider:before {
     /* background-color: blueviolet */
 }
 
-
+#qm {
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background-color: var(--yellow);
+}
 
 
 
@@ -330,12 +336,31 @@ input:checked+.slider:before {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: transparent;
     margin: 5px auto;
     /* 15% from the top and centered */
-    border: 1px solid #888;
+
+    border-radius: 7px;
     width: 80%;
     /* Could be more or less, depending on screen size */
+}
+
+.tabcontent {
+    border-radius: 7px;
+}
+
+.tablink {
+    height: 50px;
+
+    line-height: 15px;
+}
+
+.tablink:nth-child(1) {
+    border-radius: 7px 0 0 0;
+}
+
+.tablink:nth-child(3) {
+    border-radius: 0 7px 0 0;
 }
 
 /* The Close Button */
@@ -388,8 +413,8 @@ input:checked+.slider:before {
 
 /* Style the tab buttons */
 .tablink {
-    background-color: #555;
-    color: white;
+    background-color: antiquewhite;
+    color: black;
     float: left;
     border: none;
     outline: none;
@@ -399,35 +424,21 @@ input:checked+.slider:before {
     width: 33.33%;
 }
 
-/* Change background color of buttons on hover */
 .tablink:hover {
-    background-color: #777;
+    background-color: ivory;
 }
+
 
 /* Set default styles for tab content */
 .tabcontent {
-    color: white;
+    background-color: wheat;
     display: none;
     padding: 50px;
     text-align: center;
 }
 
 /* Style each tab content individually */
-#London {
-    background-color: rgb(255, 196, 0);
-}
 
-#Paris {
-    background-color: var(--green);
-}
-
-#Tokyo {
-    background-color: blue;
-}
-
-#Oslo {
-    background-color: orange;
-}
 
 .show {
     -webkit-animation: fadeIn 3s;
