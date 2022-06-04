@@ -6,6 +6,7 @@ const inp = document.querySelectorAll('.inp');
 const popup = document.querySelector('#popup');
 const inputs = document.querySelector('#inputs');
 const tablinks = document.querySelectorAll(".tablink")
+const closebtn = document.querySelector('.close');
 
 function alertfn() {
 	popup.style.cssText = `
@@ -20,12 +21,20 @@ function alertfn() {
 }
 
 
-var modal = document.getElementById('id01');
-
+const modal = document.querySelector('#id01')
+const modalC = document.querySelector('.modal-content')
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
+	if (event.target == modal || event.target == closebtn) {
+		modal.style.backgroundColor = "rgb(0,0,0,0)";
+		closebtn.style.display = 'none'
+		modalC.classList.add('closeanim')
+		setTimeout(() => {
+			modal.style.display = "none"
+			modal.style.backgroundColor = "rgb(0,0,0,0.4)"
+			modalC.classList.remove('closeanim')
+			closebtn.style.display = 'block'
+		}, 400)
 	}
 }
 

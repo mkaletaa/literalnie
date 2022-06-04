@@ -407,7 +407,30 @@ input:checked+.slider:before {
     }
 }
 
+.closeanim {
+    -webkit-animation: animateclose 0.4s;
+    animation: animateclose 0.4s
+}
 
+@-webkit-keyframes animateclose {
+    from {
+        -webkit-transform: scale(1)
+    }
+
+    to {
+        -webkit-transform: scale(0)
+    }
+}
+
+@keyframes animateclose {
+    from {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(0)
+    }
+}
 
 
 
