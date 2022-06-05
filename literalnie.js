@@ -83,15 +83,19 @@ function yellow() {
 	if (!check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo jej <u>nie zawiera</u>';
 	else if (check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo ją <u>zawiera</u>';
 }
-//inputy
-document.addEventListener("keyup", e => {
+//inputy	
 
+document.addEventListener("keyup", e => {
+	debugger
 	console.log('active: ', document.activeElement);
 	console.log('klawisz:c ', e.key);
 	const act = document.activeElement;
 	if ((document.activeElement == body || document.activeElement.classList.contains('full')) && e.key !== 'Escape' && e.key !== 'Shift') {
-		console.log('eloszkoa');
+		console.log('eloszkoa ',e);
+		
 		letterCheck(e)
+		
+		
 	}
 
 	// if(act==inp[0] || act==inp[1] || act==inp[2] || act==inp[3] || act==inp[4]){
