@@ -6,12 +6,19 @@ const inp = document.querySelectorAll('.inp');
 const popup = document.querySelector('#popup');
 const inputs = document.querySelector('#inputs');
 const tablinks = document.querySelectorAll(".tablink")
-const body = document.querySelector('body');
+const body = document.querySelector('BODY');
+const resetbtn = document.querySelector('#reset')
+
+
 
 function alertfn() {
 	popup.style.cssText = `
-	display: block; opacity:0; position: fixed;  left: 50%;transform: translateX(-50%); bottom: 50px; z-index:99;background-color: rgb(255, 196, 0); border-radius: 20px; width: 200px; height: 50px; 
-	text-align: center; font-size: 20px; vertical-align: middle; line-height: 50px;
+	display: block;
+    opacity:0; position: fixed;  left: 50%;transform: translateX(-50%); bottom: 50px; z-index:99; background: linear-gradient(189deg, #d53369 0%, #daae51 100%); border-radius: 20px; width: 200px; height: 50px; 
+	text-align: center; font-size: 20px; line-height: 50px;
+	-webkit-box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
 	`
 	popup.classList.add('show')
 	setTimeout(() => {
@@ -68,20 +75,82 @@ function yellow() {
 	if (!check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo jej <u>nie zawiera</u>';
 	else if (check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo ją <u>zawiera</u>';
 }
-//clickletter
+//inputy
 document.addEventListener("keyup", e => {
 	console.log('active: ', document.activeElement);
-
-	if (document.activeElement === body) {
-		console.log('elo ', e);
-		clickLetter(e.key)
+	console.log('klawisz:c ', e.key);
+	const act = document.activeElement;
+	if ((document.activeElement == body || document.activeElement.classList.contains('full')) && e.key !== 'Escape' && e.key !== 'Shift') {
+		console.log('eloszkoa');
+		letterCheck(e)
 	}
 
-	if (e.key == "Control") {
+	// if(act==inp[0] || act==inp[1] || act==inp[2] || act==inp[3] || act==inp[4]){
+	// 	act.classList.add('full')
+	// }	
+	if ((act == inp[0] && inp[0].hasAttribute('readOnly')) || (act == inp[1] && inp[1].hasAttribute('readOnly')) || (act == inp[2] && inp[2].hasAttribute('readOnly')) || (act == inp[3] && inp[3].hasAttribute('readOnly')) || (act == inp[4] && inp[4].hasAttribute('readOnly'))) {
+		act.classList.add('full')
+		arrows(e)
+	}
+
+	for (let i = 0; i < 5; i++) {
+		if (inp[i] !== act && inp[i].value == '')
+			inp[i].classList.remove('full')
+	}
+
+
+	if (e.key == "Shift" && e.key !== "AltGraph") {
 
 		check.click()
+		body.focus()
+	}
+	if (e.key == '1') {
+		inp[0].focus()
+	}
+	if (e.key == '2') {
+		inp[1].focus()
+	}
+	if (e.key == '3') {
+		inp[2].focus()
+	}
+	if (e.key == '4') {
+		inp[3].focus()
+	}
+	if (e.key == '5') {
+		inp[4].focus()
+	}
+	if (e.key == 'Escape') {
+		resetbtn.click()
+	}
+	if (e.key == '0') {
+		for (let i = 0; i < 5; i++) {
+			inp[i].blur()
+			console.log('aasas', document.activeElement)
+		}
+	}
+	// else{
+	// 	const el = document.activeElement
+	// //const ee = e
+	// console.log('aktywny el ', el);
+
+	// 	for(let i=0; i<5; i++){
+
+	// 			if(inp[i]==document.activeElement && inp[i].classList.contains('full') && (e.key !=='ArrowRight' && e.key!=='ArrowLeft' ))
+	// 			{
+	// 				inp[i].blur()
+	// 		console.log('elo')
+	// 			}
+	// 	}
+	// }
+
+	if (document.activeElement === body) {
+		//console.log('elo ', e);
+		//clickLetter(e)
 	}
 });
+
+
+
 
 
 
@@ -163,6 +232,10 @@ function reset() {
 	Words = (words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort()
 	list.innerHTML = Words.join(" ");
 
+	for (let i = 0; i < 5; i++) {
+		inp[i].blur()
+	}
+
 	for (let i = 0; i < letters.length; i++) {
 		letters[i].classList.remove('thereIs', 'position', 'lack')
 	}
@@ -175,18 +248,25 @@ function reset() {
 
 	list.style.height = "auto";
 	list.classList.remove('empty')
+
 }
 
-function clickLetter(e) {
-	console.log('siema', e);
+
+
+function clickLetter(aw) {
+
+	console.log('a ', aw);
 
 	for (let i = 0; i < letters.length; i++) {
-		letters[i].addEventListener('click', ev => {
+		letters[i].addEventListener('click', ev => { //console.log('siema', ev.target);
 			list.style.height = "auto"
 			if (!check.checked) {
 
 				if (letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) {
-					alertfn()
+					//chyba to wywoluje niepotrzebnie alert
+					alertfn();
+
+
 				} else {
 
 					letters[i].classList.toggle('lack');
@@ -214,6 +294,7 @@ function clickLetter(e) {
 				if (letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) {
 
 					alertfn()
+
 				} else {
 
 					letters[i].classList.toggle('thereIs');
@@ -237,6 +318,11 @@ function clickLetter(e) {
 	}
 }
 clickLetter()
+
+
+
+
+
 
 // document.addEventListener('focusin',()=>{
 // 	let c=1;
@@ -341,20 +427,24 @@ for (let i = 0; i < inp.length; i++) {
 		for (let i = 0; i < letters.length; i++) {
 			if (letters[i].id == ev.currentTarget.value && letters[i].classList.contains('lack')) {
 				ev.currentTarget.value = ''
-				alertfn()
+				
+				//alertfn()
 			}
 		}
 		if (/[a-zA-Z]{1}/.test(ev.currentTarget.value)) {
 
 			inp[i].value = ev.currentTarget.value.toLowerCase()
 
+
 			let j = 0;
 			for (word of Words) {
 				if (word.charAt(i) !== ev.currentTarget.value.toLowerCase()) {
 					word = ' ';
 
-					inp[i].classList.add('full')
+					//inp[i].classList.add('full')
 					inp[i].readOnly = true
+
+					//inp[i].blur()
 
 				}
 
@@ -378,9 +468,7 @@ for (let i = 0; i < inp.length; i++) {
 function skipF(e) {
 	e++
 	inputs.children[e].focus()
-	const el = document.activeElement
-	const ee = e
-	console.log('aktywny el ', el);
+
 	for (let i = 0; i < 5; i++) {
 
 
@@ -421,49 +509,99 @@ function skipB(e) {
 		}
 	}
 }
+//xxx
+
+// if(inp[0].classList.contains('full')){
+// inp[0].addEventListener('keyup', e=>{
 
 
-inp[0].addEventListener('keyup', e => {
+// 	 if (e.key!=='ArrowRight' || e.key!=='ArrowLeft') {
+// 		inp[0].blur()
+// 		console.log('blurrr');
 
-	if (e.key == 'ArrowRight') {
+// 	}
+// })
+// }
+//jeszcze pododawać wielkie litery
+function letterCheck(e) {
+	if (e.key == 'ą') letters[0].click()
+	if (e.key == 'ć') letters[1].click()
+	if (e.key == 'ę') letters[2].click()
+	if (e.key == 'ł') letters[3].click()
+	if (e.key == 'ó') letters[4].click()
+	if (e.key == 'ś') letters[5].click()
+	if (e.key == 'ń') letters[6].click()
+	if (e.key == 'ż') letters[7].click()
+	if (e.key == 'ź') letters[8].click()
+	if (e.key == 'q') letters[9].click()
+	if (e.key == 'w') letters[10].click()
+	if (e.key == 'e' || e.key == 'E') letters[11].click()
+	if (e.key == 'r') letters[12].click()
+	if (e.key == 't') letters[13].click()
+	if (e.key == 'y') letters[14].click()
+	if (e.key == 'u') letters[15].click()
+	if (e.key == 'i') letters[16].click()
+	if (e.key == 'o') letters[17].click()
+	if (e.key == 'p') letters[18].click()
+	if (e.key == 'a') letters[19].click()
+	if (e.key == 's') letters[20].click()
+	if (e.key == 'd') letters[21].click()
+	if (e.key == 'f') letters[22].click()
+	if (e.key == 'g') letters[23].click()
+	if (e.key == 'h') letters[24].click()
+	if (e.key == 'j') letters[25].click()
+	if (e.key == 'k') letters[26].click()
+	if (e.key == 'l') letters[27].click()
+	if (e.key == 'z') letters[28].click()
+	if (e.key == 'x') letters[29].click()
+	if (e.key == 'c') letters[30].click()
+	if (e.key == 'v') letters[31].click()
+	if (e.key == 'b') letters[32].click()
+	if (e.key == 'n') letters[33].click()
+	if (e.key == 'm') letters[34].click()
+}
 
-		skipF(0)
-	}
-	if (e.key == 'ArrowLeft') {
-		skipB(5)
-	}
-})
-inp[1].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		skipF(1)
-	}
-	if (e.key == 'ArrowLeft') {
-		skipB(1)
-	}
-})
-inp[2].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		skipF(2)
-	}
-	if (e.key == 'ArrowLeft') {
-		skipB(2)
-	}
-})
-inp[3].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		skipF(3)
-	}
-	if (e.key == 'ArrowLeft') {
-		skipB(3)
-	}
-})
-inp[4].addEventListener('keyup', e => {
-	if (e.key == 'ArrowRight') {
-		skipF(-1)
-	}
-	if (e.key == 'ArrowLeft') {
-		skipB(4)
-	}
-})
+function arrows(ev) {
+	//console.log('ev: ', ev.key);
 
+	inp[0].addEventListener('keyup', e => {
+
+		if (e.key == 'ArrowRight') {
+
+			skipF(0)
+		} else if (e.key == 'ArrowLeft') {
+			skipB(5)
+		} else letterCheck(e)
+
+	})
+	inp[1].addEventListener('keyup', e => {
+		if (e.key == 'ArrowRight') {
+			skipF(1)
+		} else if (e.key == 'ArrowLeft') {
+			skipB(1)
+		} else letterCheck(e)
+	})
+	inp[2].addEventListener('keyup', e => {
+		if (e.key == 'ArrowRight') {
+			skipF(2)
+		} else if (e.key == 'ArrowLeft') {
+			skipB(2)
+		} else letterCheck(e)
+	})
+	inp[3].addEventListener('keyup', e => {
+		if (e.key == 'ArrowRight') {
+			skipF(3)
+		} else if (e.key == 'ArrowLeft') {
+			skipB(3)
+		} else letterCheck(e)
+	})
+	inp[4].addEventListener('keyup', e => {
+		if (e.key == 'ArrowRight') {
+			skipF(-1)
+		} else if (e.key == 'ArrowLeft') {
+			skipB(4)
+		} else letterCheck(e)
+	})
+}
+arrows()
 list.innerHTML = Words.join(' ');
