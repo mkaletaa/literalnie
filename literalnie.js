@@ -14,6 +14,7 @@ console.log('inpostatni na począku: ', inp[4]);
 
 
 function alertfn() {
+
 	popup.style.cssText = `
 	display: block;
     opacity:0; position: fixed;  left: 50%;transform: translateX(-50%); bottom: 50px; z-index:99; background: linear-gradient(189deg, #d53369 0%, #daae51 100%); border-radius: 20px; width: 200px; height: 50px; 
@@ -86,7 +87,7 @@ function yellow() {
 //inputy	
 
 document.addEventListener("keyup", e => {
-	debugger
+
 	console.log('active: ', document.activeElement);
 	console.log('klawisz:c ', e.key);
 	const act = document.activeElement;
@@ -104,7 +105,7 @@ document.addEventListener("keyup", e => {
 	if ((act == inp[0] && inp[0].hasAttribute('readOnly')) || (act == inp[1] && inp[1].hasAttribute('readOnly')) || (act == inp[2] && inp[2].hasAttribute('readOnly')) || (act == inp[3] && inp[3].hasAttribute('readOnly')) || (act == inp[4] && inp[4].hasAttribute('readOnly'))) {
 
 		console.log('pierwszy');
-		alertfn()
+		//alertfn()
 		arrows(e)
 		act.classList.add('full')
 	}
@@ -159,10 +160,7 @@ document.addEventListener("keyup", e => {
 	// 	}
 	// }
 
-	if (document.activeElement === body) {
-		//console.log('elo ', e);
-		//clickLetter(e)
-	}
+
 });
 
 
@@ -241,7 +239,7 @@ function clickLetter(aw) {
 				console.log('przed drugim: ', document.activeElement.classList.contains('full'));
 
 				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
-					alertfn()
+					//alertfn()
 				} else {
 
 					letters[i].classList.add('lack');
@@ -269,7 +267,7 @@ function clickLetter(aw) {
 
 
 				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
-					alertfn()
+					//alertfn()
 				} else {
 
 					letters[i].classList.add('thereIs');
