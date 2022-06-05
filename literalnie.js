@@ -9,8 +9,8 @@ const tablinks = document.querySelectorAll(".tablink")
 const body = document.querySelector('BODY');
 const resetbtn = document.querySelector('#reset')
 
-console.log('p na początku: ',letters[18]);
-console.log('inpostatni na począku: ',inp[4]);
+console.log('p na początku: ', letters[18]);
+console.log('inpostatni na począku: ', inp[4]);
 
 
 function alertfn() {
@@ -28,6 +28,12 @@ function alertfn() {
 
 	}, 3000)
 }
+
+// for(let i=0; i<letters.length; i++){
+// letters[i].addEventListener('click', e=>{
+// 	if
+// })
+// }
 
 
 const modal = document.querySelector('#id01')
@@ -79,7 +85,7 @@ function yellow() {
 }
 //inputy
 document.addEventListener("keyup", e => {
-	
+
 	console.log('active: ', document.activeElement);
 	console.log('klawisz:c ', e.key);
 	const act = document.activeElement;
@@ -94,7 +100,7 @@ document.addEventListener("keyup", e => {
 	if ((act == inp[0] && inp[0].hasAttribute('readOnly')) || (act == inp[1] && inp[1].hasAttribute('readOnly')) || (act == inp[2] && inp[2].hasAttribute('readOnly')) || (act == inp[3] && inp[3].hasAttribute('readOnly')) || (act == inp[4] && inp[4].hasAttribute('readOnly'))) {
 
 		console.log('pierwszy');
-		//alertfn()
+		alertfn()
 		arrows(e)
 		act.classList.add('full')
 	}
@@ -227,17 +233,11 @@ function clickLetter(aw) {
 			list.style.height = "auto"
 			if (!check.checked) {
 				console.log('letters: ', letters[i]);
-console.log('przed drugim: ', document.activeElement);
-console.log('przed drugim: ', document.activeElement.classList.contains('full'));
-				if ((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full')) {
-					//chyba to wywoluje niepotrzebnie alert
-					console.log('drugi: ',document.activeElement);
-					
-					alertfn();
-				
+				console.log('przed drugim: ', document.activeElement);
+				console.log('przed drugim: ', document.activeElement.classList.contains('full'));
 
-
-
+				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
+					alertfn()
 				} else {
 
 					letters[i].classList.add('lack');
@@ -261,15 +261,11 @@ console.log('przed drugim: ', document.activeElement.classList.contains('full'))
 				}
 
 			} else if (check.checked) {
-console.log('letter', letters[i]);
+				console.log('letter', letters[i]);
 
-				if ((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position'))&& !document.activeElement.classList.contains('full')) {
-					console.log('inpfocus ',document.activeElement);
-					
+
+				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
 					alertfn()
-					console.log('trzeci');
-
-
 				} else {
 
 					letters[i].classList.add('thereIs');
@@ -428,8 +424,10 @@ for (let i = 0; i < inp.length; i++) {
 				j++;
 			}
 			for (let k = 0; k < letters.length; k++) {
-				if (letters[k].id == inp[i].value) {console.log('elo');
-				 letters[k].classList.add('position');}
+				if (letters[k].id == inp[i].value) {
+					console.log('elo');
+					letters[k].classList.add('position');
+				}
 			}
 			list.innerHTML = Words.join(' ');
 			list.style.height = "auto"
@@ -529,8 +527,10 @@ function letterCheck(e) {
 	if (e.key == 'j') letters[25].click()
 	if (e.key == 'k') letters[26].click()
 	if (e.key == 'l') letters[27].click()
-	if (e.key == 'z') {console.log('siema');
-	   letters[28].click()}
+	if (e.key == 'z') {
+		console.log('siema');
+		letters[28].click()
+	}
 	if (e.key == 'x') letters[29].click()
 	if (e.key == 'c') letters[30].click()
 	if (e.key == 'v') letters[31].click()
