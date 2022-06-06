@@ -14,7 +14,6 @@ console.log('inpostatni na począku: ', inp[4]);
 
 
 function alertfn() {
-
 	popup.style.cssText = `
 	display: block;
     opacity:0; position: fixed;  left: 50%;transform: translateX(-50%); bottom: 50px; z-index:99; background: linear-gradient(189deg, #d53369 0%, #daae51 100%); border-radius: 20px; width: 200px; height: 50px; 
@@ -29,12 +28,6 @@ function alertfn() {
 
 	}, 3000)
 }
-
-// for(let i=0; i<letters.length; i++){
-// letters[i].addEventListener('click', e=>{
-// 	if
-// })
-// }
 
 
 const modal = document.querySelector('#id01')
@@ -84,19 +77,14 @@ function yellow() {
 	if (!check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo jej <u>nie zawiera</u>';
 	else if (check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo ją <u>zawiera</u>';
 }
-//inputy	
-
+//inputy
 document.addEventListener("keyup", e => {
-
 	console.log('active: ', document.activeElement);
 	console.log('klawisz:c ', e.key);
 	const act = document.activeElement;
 	if ((document.activeElement == body || document.activeElement.classList.contains('full')) && e.key !== 'Escape' && e.key !== 'Shift') {
-		console.log('eloszkoa ',e);
-		
+		console.log('eloszkoa');
 		letterCheck(e)
-		
-		
 	}
 
 	// if(act==inp[0] || act==inp[1] || act==inp[2] || act==inp[3] || act==inp[4]){
@@ -160,7 +148,10 @@ document.addEventListener("keyup", e => {
 	// 	}
 	// }
 
-
+	if (document.activeElement === body) {
+		//console.log('elo ', e);
+		//clickLetter(e)
+	}
 });
 
 
@@ -237,9 +228,15 @@ function clickLetter(aw) {
 				console.log('letters: ', letters[i]);
 				console.log('przed drugim: ', document.activeElement);
 				console.log('przed drugim: ', document.activeElement.classList.contains('full'));
+				if ((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full')) {
+					//chyba to wywoluje niepotrzebnie alert
+					console.log('drugi: ', document.activeElement);
 
-				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
-					//alertfn()
+					//alertfn();
+
+
+
+
 				} else {
 
 					letters[i].classList.add('lack');
@@ -265,9 +262,13 @@ function clickLetter(aw) {
 			} else if (check.checked) {
 				console.log('letter', letters[i]);
 
+				if ((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full')) {
+					console.log('inpfocus ', document.activeElement);
 
-				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
 					//alertfn()
+					console.log('trzeci');
+
+
 				} else {
 
 					letters[i].classList.add('thereIs');
@@ -501,44 +502,41 @@ function skipB(e) {
 // }
 //jeszcze pododawać wielkie litery
 function letterCheck(e) {
-	if (e.key == 'ą') letters[0].click()
-	if (e.key == 'ć') letters[1].click()
-	if (e.key == 'ę') letters[2].click()
-	if (e.key == 'ł') letters[3].click()
-	if (e.key == 'ó') letters[4].click()
-	if (e.key == 'ś') letters[5].click()
-	if (e.key == 'ń') letters[6].click()
-	if (e.key == 'ż') letters[7].click()
-	if (e.key == 'ź') letters[8].click()
-	if (e.key == 'q') letters[9].click()
-	if (e.key == 'w') letters[10].click()
+	if (e.key == 'ą' || e.key == 'Ą') letters[0].click()
+	if (e.key == 'ć' || e.key == 'Ć') letters[1].click()
+	if (e.key == 'ę' || e.key == 'Ę') letters[2].click()
+	if (e.key == 'ł' || e.key == 'Ł') letters[3].click()
+	if (e.key == 'ó' || e.key == 'Ó') letters[4].click()
+	if (e.key == 'ś' || e.key == 'Ś') letters[5].click()
+	if (e.key == 'ń' || e.key == 'Ń') letters[6].click()
+	if (e.key == 'ż' || e.key == 'Ż') letters[7].click()
+	if (e.key == 'ź' || e.key == 'Ź') letters[8].click()
+	if (e.key == 'q' || e.key == 'Q') letters[9].click()
+	if (e.key == 'w' || e.key == 'W') letters[10].click()
 	if (e.key == 'e' || e.key == 'E') letters[11].click()
-	if (e.key == 'r') letters[12].click()
-	if (e.key == 't') letters[13].click()
-	if (e.key == 'y') letters[14].click()
-	if (e.key == 'u') letters[15].click()
-	if (e.key == 'i') letters[16].click()
-	if (e.key == 'o') letters[17].click()
-	if (e.key == 'p') letters[18].click()
-	if (e.key == 'a') letters[19].click()
-	if (e.key == 's') letters[20].click()
-	if (e.key == 'd') letters[21].click()
-	if (e.key == 'f') letters[22].click()
-	if (e.key == 'g') letters[23].click()
-	if (e.key == 'h') letters[24].click()
-	if (e.key == 'j') letters[25].click()
-	if (e.key == 'k') letters[26].click()
-	if (e.key == 'l') letters[27].click()
-	if (e.key == 'z') {
-		console.log('siema');
-		letters[28].click()
-	}
-	if (e.key == 'x') letters[29].click()
-	if (e.key == 'c') letters[30].click()
-	if (e.key == 'v') letters[31].click()
-	if (e.key == 'b') letters[32].click()
-	if (e.key == 'n') letters[33].click()
-	if (e.key == 'm') letters[34].click()
+	if (e.key == 'r' || e.key == 'R') letters[12].click()
+	if (e.key == 't' || e.key == 'T') letters[13].click()
+	if (e.key == 'y' || e.key == 'Y') letters[14].click()
+	if (e.key == 'u' || e.key == 'U') letters[15].click()
+	if (e.key == 'i' || e.key == 'I') letters[16].click()
+	if (e.key == 'o' || e.key == 'O') letters[17].click()
+	if (e.key == 'p' || e.key == 'P') letters[18].click()
+	if (e.key == 'a' || e.key == 'A') letters[19].click()
+	if (e.key == 's' || e.key == 'S') letters[20].click()
+	if (e.key == 'd' || e.key == 'D') letters[21].click()
+	if (e.key == 'f' || e.key == 'F') letters[22].click()
+	if (e.key == 'g' || e.key == 'G') letters[23].click()
+	if (e.key == 'h' || e.key == 'H') letters[24].click()
+	if (e.key == 'j' || e.key == 'J') letters[25].click()
+	if (e.key == 'k' || e.key == 'K') letters[26].click()
+	if (e.key == 'l' || e.key == 'L') letters[27].click()
+	if (e.key == 'z' || e.key == 'Z') letters[28].click()
+	if (e.key == 'x' || e.key == 'X') letters[29].click()
+	if (e.key == 'c' || e.key == 'C') letters[30].click()
+	if (e.key == 'v' || e.key == 'V') letters[31].click()
+	if (e.key == 'b' || e.key == 'B') letters[32].click()
+	if (e.key == 'n' || e.key == 'N') letters[33].click()
+	if (e.key == 'm' || e.key == 'M') letters[34].click()
 }
 
 function arrows(ev) {
