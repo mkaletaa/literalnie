@@ -3,20 +3,22 @@ const letters = document.querySelectorAll('.letter');
 const check = document.querySelector('#check');
 const napis = document.querySelector('#napis');
 const inp = document.querySelectorAll('.inp');
-const popup = document.querySelector('#popup');
+
 const inputs = document.querySelector('#inputs');
 const tablinks = document.querySelectorAll(".tablink")
 const body = document.querySelector('BODY');
 const resetbtn = document.querySelector('#reset')
+const qm = document.querySelector('#qm')
 
-console.log('p na początku: ', letters[18]);
-console.log('inpostatni na począku: ', inp[4]);
 
+const popup = document.querySelector('#popup');
+const popupL = document.querySelector('#popupLack');
 
 function alertfn() {
+
 	popup.style.cssText = `
 	display: block;
-    opacity:0; position: fixed;  left: 50%;transform: translateX(-50%); bottom: 50px; z-index:99; background: linear-gradient(189deg, #d53369 0%, #daae51 100%); border-radius: 20px; width: 200px; height: 50px; 
+    opacity:0;  background: linear-gradient(189deg, #d53369 0%, #daae51 100%); border-radius: 20px; width: 300px; height: 50px; 
 	text-align: center; font-size: 20px; line-height: 50px;
 	-webkit-box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
 	-moz-box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
@@ -29,7 +31,75 @@ function alertfn() {
 	}, 3000)
 }
 
+function isEmpty() {
+	let count = 0;
+	for (let i = 0; i < Words.length; i++) {
+		if (Words[i] == ' ')
+			count++
+		if (count == Words.length) {
+			popupL.style.cssText = `
+	display: block;
+    opacity:0; margin-bottom: 20px; background: linear-gradient(189deg, #d53369 0%, #daae51 100%); border-radius: 20px; width: 300px; height: 50px; 
+	text-align: center; font-size: 20px; line-height: 50px;
+	-webkit-box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 1);
+	`
+			popupL.classList.add('showLack')
+			popupL.style.opacity = '1'
+		}
+	}
+}
 
+////alertt
+for (let i = 0; i < letters.length; i++) {
+	letters[i].addEventListener('click', e => {
+
+		let c = 0
+		for (let j = 0; j < 5; j++) {
+			if (inp[j].value == letters[e.target.id]) c++
+		}
+
+
+		if (!(!letters[i].classList.contains('position') && !letters[i].classList.contains('lack') && !letters[i].classList.contains('thereIs')) && document.activeElement !== inp[4] && document.activeElement !== inp[3] && document.activeElement !== inp[2] && document.activeElement !== inp[1] && document.activeElement !== inp[0]) {
+			console.log('pierwszy ALERT');
+
+			alertfn()
+		} else if (((document.activeElement == inp[4] && e.target.classList.contains('lack')) || (document.activeElement == inp[3] && e.target.classList.contains('lack')) || (document.activeElement == inp[2] && e.target.classList.contains('lack')) || (document.activeElement == inp[1] && e.target.classList.contains('lack')) || (document.activeElement == inp[0] && e.target.classList.contains('lack')))) {
+			console.log('drugi Alert', e.target.classList);
+
+			//alertfn()
+
+		} else if (((document.activeElement == inp[4] && e.target.classList.contains('thereIs')) || (document.activeElement == inp[3] && e.target.classList.contains('thereIs')) || (document.activeElement == inp[2] && e.target.classList.contains('thereIs')) || (document.activeElement == inp[1] && e.target.classList.contains('thereIs')) || (document.activeElement == inp[0] && e.target.classList.contains('thereIs')))) {
+			//alertfn()
+
+
+		} else if (((document.activeElement == inp[4] && e.target.classList.contains('position')) || (document.activeElement == inp[3] && e.target.classList.contains('position')) || (document.activeElement == inp[2] && e.target.classList.contains('position')) || (document.activeElement == inp[1] && e.target.classList.contains('position')) || (document.activeElement == inp[0] && e.target.classList.contains('position')))) {
+
+
+			//alertfn()
+		}
+	})
+}
+// for(let i=0; i<letters.length; i++){
+// letters[i].addEventListener('click', e=>{
+// 	if
+// })
+// }
+function font(e) {
+
+	if (e.id == 'little')
+		list.style.fontSize = '16px'
+	if (e.id == 'big')
+		list.style.fontSize = '22px'
+
+	e.blur()
+}
+
+function modalfn() {
+	document.getElementById('id01').style.display = 'block';
+	qm.classList.add('if')
+}
 const modal = document.querySelector('#id01')
 const modalC = document.querySelector('.modal-content')
 const closebtn = document.querySelector('.close')
@@ -47,7 +117,7 @@ window.onclick = function (event) {
 		}, 400)
 	}
 }
-
+//qwqwqw
 function openTab(tab, elmnt, color) {
 	// Hide all elements with class="tabcontent" by default */
 	var i, tabcontent, tablinks;
@@ -76,15 +146,23 @@ document.getElementById("defaultOpen").click();
 function yellow() {
 	if (!check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo jej <u>nie zawiera</u>';
 	else if (check.checked) napis.innerHTML = 'Kliknij raz na literę jeśli szukane słowo ją <u>zawiera</u>';
+	check.blur()
 }
-//inputy
+//inputy	
+
 document.addEventListener("keyup", e => {
-	console.log('active: ', document.activeElement);
-	console.log('klawisz:c ', e.key);
+
+
+
 	const act = document.activeElement;
+
+
+
 	if ((document.activeElement == body || document.activeElement.classList.contains('full')) && e.key !== 'Escape' && e.key !== 'Shift') {
-		console.log('eloszkoa');
-		letterCheck(e)
+
+
+
+		letterCheck(e, document.activeElement)
 	}
 
 	// if(act==inp[0] || act==inp[1] || act==inp[2] || act==inp[3] || act==inp[4]){
@@ -92,15 +170,43 @@ document.addEventListener("keyup", e => {
 	// }	
 	if ((act == inp[0] && inp[0].hasAttribute('readOnly')) || (act == inp[1] && inp[1].hasAttribute('readOnly')) || (act == inp[2] && inp[2].hasAttribute('readOnly')) || (act == inp[3] && inp[3].hasAttribute('readOnly')) || (act == inp[4] && inp[4].hasAttribute('readOnly'))) {
 
-		console.log('pierwszy');
+
+		//może tutaj dodać jeszcze jakiś warunek
 		//alertfn()
-		arrows(e)
+
+		//arrows(e)
 		act.classList.add('full')
 	}
 
 	for (let i = 0; i < 5; i++) {
 		if (inp[i] !== act && inp[i].value == '')
 			inp[i].classList.remove('full')
+	}
+
+	if (e.key == 'CapsLock') {
+
+		let style = getComputedStyle(list)
+
+		if (style.fontSize == '22px') {
+			list.style.fontSize = '16px'
+		} else if (style.fontSize == '16px') {
+			list.style.fontSize = '22px'
+		}
+
+	}
+	//qwqwqw
+	if (e.key == '/' || e.key == '?') {
+		//debugger
+		if (!qm.classList.contains('if')) {
+			qm.click()
+			qm.classList.add('if')
+		} else {
+			closebtn.click()
+			qm.classList.remove('if')
+			qm.blur()
+		}
+
+
 	}
 
 
@@ -125,33 +231,39 @@ document.addEventListener("keyup", e => {
 		inp[4].focus()
 	}
 	if (e.key == 'Escape') {
-		resetbtn.click()
+		if (qm.classList.contains('if')) {
+			closebtn.click()
+			qm.classList.remove('if')
+			qm.blur()
+
+
+		} else
+			resetbtn.click()
+
+
 	}
 	if (e.key == '0') {
 		for (let i = 0; i < 5; i++) {
 			inp[i].blur()
-			console.log('aasas', document.activeElement)
+
 		}
 	}
 	// else{
 	// 	const el = document.activeElement
 	// //const ee = e
-	// console.log('aktywny el ', el);
+	//, el);
 
 	// 	for(let i=0; i<5; i++){
 
 	// 			if(inp[i]==document.activeElement && inp[i].classList.contains('full') && (e.key !=='ArrowRight' && e.key!=='ArrowLeft' ))
 	// 			{
 	// 				inp[i].blur()
-	// 		console.log('elo')
+	// 		
 	// 			}
 	// 	}
 	// }
 
-	if (document.activeElement === body) {
-		//console.log('elo ', e);
-		//clickLetter(e)
-	}
+
 });
 
 
@@ -159,17 +271,27 @@ document.addEventListener("keyup", e => {
 
 
 
-function isEmpty() {
-	let count = 0;
-	for (let i = 0; i < Words.length; i++) {
-		if (Words[i] == ' ')
-			count++
-		if (count == Words.length) {
-			list.classList.add('empty');
-			list.innerHTML = "BRAK SŁÓW"
+
+
+
+
+
+for (let i = 0; i < letters.length; i++) {
+	letters[i].addEventListener('mouseenter', e => {
+
+		if ((!letters[i].classList.contains('position') && !letters[i].classList.contains('lack') && !letters[i].classList.contains('thereIs'))) {
+
+
+			if (check.checked)
+				letters[i].setAttribute('title', 'kliknij, jeśli hasło zawiera tę literę')
+			else letters[i].setAttribute('title', 'kliknij, jeśli hasło nie zawiera tej litery')
+		} else {
+			letters[i].removeAttribute('title')
 		}
-	}
+	})
 }
+
+
 
 let words1 = "abace, abaci, abaka, abaką, abakę, abaki, abako, abaku, abata, abaty, abbie, abbom, abbów, abcug, abdul, abobr, abort, abrys, absta, abstą, abstę, absto, absty, absyd, abwer, acana, acani, acanu, acany, achać, achaj, achał, acham, achań, achom, achów, acida, acpan, acpań, actio, acyle, acyli, acylu, adasi, adatu, adaty, addio, adept, adieu, admin, adres, adria, adrią, adrie, adrię, adrii, adrio, adryj, adżyk, aeccy, aecka, aecką, aecki, aecku, aeral, aerob, afcie, afekt, afera, aferą, aferę, afero, afery, afgan, afiks, afisz, afryk, afryt, aftom, agach, agada, agadą, agadę, agado, agady, agama, agamą, agamę, agami, agamo, agamy, agany, agapa, agapą, agape, agapę, agapo, agapy, agaru, agary, agatu, agaty, agawa, agawą, agawę, agawo, agawy, agema, agemą, agemę, agemo, agemy, agend, agens, agent, agfie, agfom, aggia, aggio, aggiu, agiem, agile, agiom, agiów, aglet, agnat, agnus, agona, agoną, agonę, agono, agonu, agony, agora, agorą, agorę, agoro, agory, agraf, aguti, ahims, ahins, aidsa, aidsu, aidsy, aioli, aisis, ajaks, ajent, ajeru, ajery, ajkuj, ajmak, ajran, ajwar, akant, akara, akarą, akarę, akaro, akary, akces, akcie, akcik, akcja, akcją, akcje, akcję, akcji, akcjo, akcyj, akcyz, akiom, aklin, akond, akont, akord, akrem, akrom, akron, akrów, akryl, akrze, aksel, aksis, aksla, aksle, aksli, akslu, akson, aktem, aktom, aktor, aktów, aktyn, aktyw, akutu, akuty, akwen, akyna, akyny, alach, alaks, alami, alarm, alasz, alaxu, alaxy, albem, albie, albit, albom, alboż, albów, album, alcie, aldem, aldis, aldol, aldom, aldoz, aldów, aldyn, aldze, aleby, alefa, alefu, alefy, aleja, aleją, aleje, aleję, alejo, alert, alfce, alfek, alfer, alfie, alfka, alfką, alfkę, alfki, alfko, alfom, algin, algol, algom, alias, aliaż, alibi, alija, aliją, alije, aliję, alijo, alima, alimy, alitu, ality, alkad, alkan, alken, alkil, alkin, alkom, alków, almei, almej, almik, alnik, aloes, aloha, alona, aloną, alonę, alono, alony, alonż, aloza, alozą, alozę, alozo, alozy, alpag, alpak, alpem, alpie, alpom, alpów, altan, altem, altom, altów, alumn, alund, alwar, ałunu, ałuny, ałycz, amant, ambem, ambie, ambit, ambom, ambon, ambra, ambrą, ambrę, ambro, ambry, ameba, amebą, amebę, amebo, ameby, amfid, amfie, amfom, amfor, amica, amicą, amice, amicę, amico, amida, amidą, amidę, amido, amidu, amidy, amiga, amigą, amigę, amigi, amigo, amiki, amina, aminą, aminę, amino, aminy, amiom, amisz, amoki, amoku, amole, amoli, amolu, amonu, amony, amora, amorf, amory, amper, ampla, amplą, ample, amplę, ampli, amplo, ampul, ampuł, amrit, amryt, amura, amury, amyle, amyli, amylu, anand, anatt, ancie, ancug, aneks, angaż, angin, angob, angol, angor, angst, aniby, anima, animą, anime, animę, animo, animy, anioł, anion, ankra, ankrą, ankrę, ankro, ankry, annat, anoda, anodą, anodę, anodo, anody, anons, ansie, ansom, antab, antał, antek, anten, antka, antki, antku, antom, antyk, anusa, anusy, anyże, anyżu, aoida, aoidą, aoidę, aoido, aoidy, aojda, aojdą, aojdę, aojdo, aojdy, aorta, aortą, aortę, aorto, aorty, aowca, aowce, aowcu, aowcy, apage, apasz, apate, apeks, apele, apeli, apell, apelu, apiać, apiol, apisu, apisy, aplet, aplik, aplit, aplom, aport, apret, apryl, apsar, apsel, apsik, apsla, apsle, apsli, apslu, apsyd, aptek, araba, araby, arach, araci, araki, araku, arame, arami, aranż, arata, araty, arbek, arbie, arbom, arbuz, arche, archi, arden, areał, arece, areka, areką, arekę, areki, areko, arena, areną, arend, arenę, areng, areno, arenu, areny, arete, arfie, arfom, arfuj, argon, argot, argus, arhat, arian, ariel, ariet, ariom, arion, arios, arkad, arkan, arkom, arkoz, armad, armat, armia, armią, armie, armię, armii, armij, armil, armio, arnik, arnot, aromu, aromy, aronu, arony, arowi, arras, arsan, arsen, arsie, arsom, arsyn, artel, aryki, aryku, aryle, aryli, arylu, asach, asami, asana, asaną, asanę, asani, asano, asanu, asany, asauł, ascez, ascon, asdic, asert, askar, asowi, aspan, assai, astat, aster, astik, astma, astmą, astmę, astmo, astmy, astra, astrą, astrę, astro, astry, asura, asurą, asurę, asuro, asury, asyst, aszet, aszyk, aśram, atach, ataki, ataku, atami, atari, ataru, atary, atest, atlas, atłas, atman, atole, atoli, atolu, atomu, atomy, atowi, atrap, atria, attyd, attyk, atutu, atuty, aucie, audio, audyt, augit, augur, aukub, aulom, aulos, aułem, aułom, aułów, aurom, auror, aurze, autek, autem, autka, autko, autku, autom, autor, autów, autyk, awale, awalu, awans, awena, aweną, awenę, aweno, awenu, aweny, awers, awiza, awizo, awizu, awizy, awosz, azali, azbuk, azdyk, azoik, azotu, azoty, azowa, azową, azowe, azowi, azowy, azyle, azylu, azyma, azymą, azymę, azymo, azymy, azyna, azyną, azynę, azyno, azyny, ażbym, ażbyś, ażeby, ażiem, ażiom, ażiów, ażuru, ażury, babce, babci, babek, babia, babią, babie, babim, babin, babka, babką, babkę, babki, babko, babom, babon, babów, babra, babrz, babsk, babul, babuń, babus, babuś, bacie, bacik, bacom, baców, bacuj, baczą, baczę, baczy, badać, badaj, badał, badam, badan, badań, badem, badom, badów, badyl, bagaż, bagna, bagno, bagnu, bagra, bagru, bagry, bahta, bahty, bajać, bajaj, bajał, bajam, bajan, bajań, bając, bajca, bajcą, bajce, bajcę, bajco, bajcy, bajcz, bajda, bajdą, bajdę, bajdo, bajdy, bajek, bajem, bajer, bajęd, bajka, bajką, bajkę, bajki, bajko, bajmy, bajom, bajor, bajów, bajta, bajtu, bajty, bajże, bakan, baken, bakom, baków, baksa, baksy, bakun, balas, balat, balem, balet, balia, balią, balie, balię, balii, balij, balik, balio, balom, balon, balot, balów, balsa, balsą, balsę, balso, balsy, baluj, bałak, bałam, bałaś, bałby, bałem, bałeś, bałtu, bałty, bałyk, bamba, bambo, bambu, banał, banan, banat, bance, banda, bandą, bandę, bando, bandu, bandy, banek, banem, baner, bania, banią, banie, banię, banio, baniu, banjo, banka, banką, bankę, banki, banko, banku, banom, banów, banta, bantu, banty, banuj, bańce, bańka, bańką, bańkę, bańki, bańko, baonu, baony, baora, baory, barak, baran, barat, baraż, barce, barci, barda, bardo, bardu, bardy, barek, barem, bareż, baria, barią, barie, barię, barii, bario, barka, barką, barkę, barki, barko, barku, barnu, barny, barok, barom, baron, barów, barta, bartą, bartę, barto, barty, barwa, barwą, barwę, barwi, barwo, barwy, baryj, barył, baryt, barze, basek, basem, basen, baset, basfa, basfy, basic, basie, baski, basku, basma, basmą, basmę, basmo, basmy, basom, basów, bassa, bassy, basta, basuj, basza, baszą, basze, baszę, baszo, baszt, baszy, baśce, baśka, baśką, baśkę, baśki, baśko, baśni, batat, batem, batik, batog, batom, baton, batoż, batów, batut, baudu, baudy, bauer, bawar, bawet, bawią, bawić, bawię, bawił, bawmy, bawół, bawże, bazar, bazia, bazią, bazie, bazię, bazio, baziu, bazom, bazuj, bazun, bazyt, baźce, baźka, baźką, baźkę, baźki, baźko, bażyn, bąbel, bąbla, bąble, bąbli, bąblu, bąkać, bąkaj, bąkał, bąkam, bąkań, bąkną, bąknę, bąkom, bąków, beana, beani, beany, beatu, beaty, bebop, becie, becik, beczą, beczę, beczy, bedel, bedla, bedle, bedli, bedlu, begam, begin, begom, begów, bejca, bejcą, bejce, bejcę, bejco, bejcu, bejcy, bejem, bejma, bejmy, bejom, bejów, bejtu, bejty, bekać, bekaj, bekał, bekam, bekań, bekas, bekną, beknę, bekom, bekon, beków, beksa, beksą, beksę, bekso, beksy, belce, belek, belem, belga, belgą, belgę, belgi, belgo, belgu, belka, belką, belkę, belki, belko, bella, belle, bellu, belom, belon, belów, beluj, bełcą, bełce, bełcę, bełcz, bełta, bełtu, bełty, bemar, bemit, bemol, bencz, berda, berdą, berdę, berdo, berdy, berek, bereł, berem, beret, berka, berki, berku, berle, berła, berło, berłu, berom, berów, bersa, berso, bersu, berta, bertą, bertę, berto, berty, beryl, berze, bessa, bessą, bessę, besso, bessy, betce, betek, betel, betem, betka, betką, betkę, betki, betko, betom, beton, betów, bezan, bezie, bezik, bezom, beżem, beżom, beżów, bęben, bębna, bębni, bębny, bęcną, bęcnę, będąc, biada, biaks, biali, biała, białą, białe, biało, biały, biasu, biasy, bibce, bibek, bibie, bibka, bibką, bibkę, bibki, bibko, bibom, bibop, bibów, bibuł, bicia, bicie, biciu, bicza, bicze, biczu, biczy, bidak, bideł, bidet, bidle, bidła, bidło, bidłu, bidna, bidną, bidne, bidni, bidny, bidom, bidon, bidul, biduś, bidze, bieda, biedą, biedę, biedo, biedy, biedź, biega, biegi, biegł, biegu, bielą, biele, bielę, bieli, bielm, bielu, bierz, biesa, biesi, biesy, bieżą, bieżę, bieży, biffa, biffą, biffę, biffo, biffy, bigla, bigle, bigli, biglu, bigom, bigos, bigot, biguj, bijać, bijaj, bijak, bijał, bijam, bijań, bijąc, bijmy, bijże, biker, bilem, bilet, bille, billi, billu, bilom, bilon, bilów, biłam, biłaś, biłby, biłem, biłeś, bimba, bimie, bimom, bimsu, bimsy, binda, bindą, bindę, bindo, bindy, binga, bingo, bingu, biomu, biomy, biont, biorą, biorę, biosu, biosy, biota, biotą, biotę, bioto, bioty, bioza, biozą, biozę, biozo, biozy, biper, birem, biret, birra, birry, bisem, bisie, bisom, bisów, bistr, bisuj, bitce, bitej, bitek, bitem, bitew, bitka, bitką, bitkę, bitki, bitko, bitna, bitną, bitne, bitni, bitny, bitom, bitów, bitum, bitwa, bitwą, bitwę, bitwo, bitwy, bitym, biura, biuro, biuru, biurw, biust, biwak, bizie, bizom, bizon, bizun, blach, blada, bladą, blade, bladł, blado, blady, bladź, blaga, blagą, blagę, blagi, blago, blakł, blank, blant, blask, blatu, blaty, blaza, blazą, blazę, blazo, blazy, bleau, blech, bleed, blefu, blefy, blend, blich, bliki, bliku, blina, bliną, blind, blinę, blino, bliny, blizn, bliża, bliżą, bliże, bliżę, bliżo, bliży, bloga, blogi, blogu, bloki, bloku, blond, blues, bluff, bluza, bluzą, bluzę, bluzg, bluzo, bluzy, bluźń, błaga, błaha, błahą, błahe, błahy, błamu, błamy, bława, bławą, bławe, bławi, bławy, błazi, błądź, błąka, błędu, błędy, błocą, błocę, błoci, błock, błoga, błogą, błogi, błogo, błona, błoną, błonę, błoni, błono, błony, błota, błoto, błotu, błysk, bniec, bobak, bobas, bobby, bobek, bobem, bober, bobie, bobik, bobin, bobka, bobki, bobku, bobom, bobów, bobra, bobru, bobry, bobuj, bobym, bobyś, bocce, bocie, boczą, boczę, boczy, boćka, boćki, boćku, bodaj, bodąc, bodeg, bodem, bodli, bodła, bodło, bodły, bodną, bodnę, bodni, bodom, bodot, bodów, bogać, bogiń, bogom, bogów, bohem, bohru, bohry, boich, boimy, boisk, boisz, bojar, bojąc, bojce, bojek, bojem, bojer, bojka, bojką, bojkę, bojki, bojko, bojom, bojów, bojuj, bokom, boków, boksu, boksy, bolał, bolas, boląc, bolca, bolce, bolcu, boldu, boldy, bolec, boleć, bolej, bolek, bolem, boleń, boler, bolid, bolka, bolki, bolku, bolom, bolów, bolus, bomba, bombą, bombę, bombo, bomby, bomem, bomie, bomom, bomów, bonce, bonda, bondy, bonek, bonem, bonet, bonga, bongi, bongo, bongu, bonia, bonią, bonie, bonię, bonio, bonit, bonka, bonką, bonkę, bonki, bonko, bonom, bonów, bontu, bonty, bonuj, bonus, bonza, bonzą, bonzę, bonzo, bonzy, boomu, boomy, bootu, booty, boral, boran, bordo, borek, borem, borgi, borgu, borki, borku, borna, borną, borne, borni, borny, borom, borów, borta, bortą, bortę, borto, bortu, borty, boruj, borut, boryl, borze, bosak, bosch, boscy, bosej, boska, boską, boski, bosko, bosku, bossa, bossy, bosym, botek, botem, botka, botki, botku, botom, botox, botów, boyem, boyom, boyów, bozia, bozią, bozie, bozię, bozio, boziu, bozon, bożąc, bożąt, bożej, bożek, bożeń, bożka, bożki, bożku, bożyć, bożył, bożym, bójce, bójek, bójka, bójką, bójkę, bójki, bójko, bójmy, bójże, bólem, bólmy, bólom, bólów, bólże, bóstw, bóżmy, bóżże, brach, braci, braha, brahą, brahę, braho, brahy, brajl, braka, braki, braku, brali, brała, brało, brały, brama, bramą, bramę, brami, bramo, bramu, bramy, brana, braną, brand, brane, brani, brano, brany, branż, brasu, brasy, brata, bratu, bratw, braty, braun, brawa, brawo, brawu, braże, brązu, brązy, break, brech";
 let words2 = 'bredź, breja, breją, breje, breję, brejo, breki, breku, bresz, brewe, bridż, brief, bydlę, cabas, cabem, cabie, cabom, cabów, cacci, cacek, cache, cacka, cacko, cacku, cacuś, cadet, cadyk, cafem, cafie, cafom, cafów, cajgi, cajgu, cakla, cakle, cakli, caklu, calat, calca, calce, calcu, calec, calem, calom, calsi, całce, całej, całek, całka, całką, całkę, całki, całko, całuj, całun, całus, całym, camel, camer, campu, campy, canca, cancą, cance, cancę, canco, candi, canki, canoe, canon, canta, canto, cantu, capem, capia, capią, capić, capie, capię, capił, capim, capin, capmy, capną, capnę, capom, capów, capże, carat, carem, cargo, carin, carol, carom, carów, caryc, carze, casco, casia, casio, casiu, castr, casus, catch, cauda, caudą, caudę, caudo, caudy, causa, causą, causę, causo, causy, cążek, cążki, ceber, cebra, cebry, cebul, cecha, cechą, cechę, cecho, cechu, cechy, cecka, cedet, cedru, cedry, ceduj, ceduł, cedzą, cedzę, cedzi, cefal, cegle, cegła, cegłą, cegłę, cegło, cegły, ceika, ceiki, ceiku, cekin, cekom, ceków, celce, celek, celem, celic, celit, celka, celką, celkę, celki, celko, cella, cellą, celle, cellę, celli, cello, celna, celną, celne, celni, celny, celom, celon, celów, celta, celtą, celtę, celto, celty, celuj, cenar, cenią, cenić, cenie, cenię, cenił, cenna, cenną, cenne, cenni, cenny, cenom, cenoz, centa, cento, centr, centu, centy, cenur, ceńmy, ceńże, ceorl, cepak, cepem, ceper, cepie, cepom, cepów, cepra, cepry, cerat, cerce, cerek, cerem, ceres, cerka, cerką, cerkę, cerki, cerko, cerom, cerów, certa, certą, certę, certo, certy, ceruj, cerze, ceses, cesja, cesją, cesje, cesję, cesji, cesjo, cesyj, cesze, cetan, cetel, cetla, cetle, cetli, cetlu, cetna, cetno, cetnu, cetyn, cewce, cewek, cewią, cewić, cewie, cewię, cewił, cewka, cewką, cewkę, cewki, cewko, cewmy, cewom, cewże, cezal, cezar, cezem, cezie, cezom, cezów, cezur, cęgom, cęgów, cętce, cętek, cętka, cętką, cętkę, cętki, cętko, chach, chaco, chale, chała, chałą, chałę, chało, chałw, chały, chama, chams, chamy, chana, chant, chanu, chany, chaos, chaps, chara, charą, charę, charo, chart, chary, chata, chatą, chatę, chato, chatu, chaty, chcąc, chceń, chcic, chebd, checz, chełp, chera, cherą, cherę, chero, chery, chewr, chęci, chich, chief, chile, chili, china, chiną, chinę, chino, chiny, chipa, chips, chipu, chipy, chlać, chlaj, chlał, chlam, chlań, chlap, chleb, chlej, chlew, chlip, chlor, chlub, chlup, chłam, chłap, chłoń, chłop, chłód, chmar, chmur, chmyz, chnie, chnom, chodu, chody, chodź, choin, choja, choją, choje, choję, chojo, chona, chony, chora, chorą, chord, chore, choro, choru, chory, chowa, chowu, chowy, chóru, chóry, chram, chrap, chrei, chrej, chrom, chroń, chrup, chryi, chryj, chryp, chuch, chuci, chucp, chuda, chudą, chude, chudł, chudo, chudy, chudź, chuja, chuje, chuju, chupa, chupą, chupę, chupo, chupy, chust, chwać, chwal, chwał, chwat, chwil, chwyć, chwyt, chyba, chybi, chylą, chylę, chyli, chyra, chyrą, chyrę, chyro, chyry, chyża, chyżą, chyże, chyżę, chyżo, chyży, ciach, ciała, ciało, ciału, ciamć, ciapa, ciapą, ciapć, ciapę, ciapo, ciapy, ciast, ciąga, ciągi, ciągu, ciąża, ciążą, ciąże, ciążę, ciążo, ciąży, cibor, cicha, cichą, ciche, cichł, cicho, cichu, cichy, cieci, ciecz, cieka, cieką, ciekę, cieki, ciekł, cieku, cielą, ciele, cielę, cieli, ciemn, ciemń, cieni, ciepa, cierń, cierp, ciesz, cieśń, cięci, cięgi, cięli, cięła, cięło, cięły, cięta, ciętą, cięte, cięto, cięty, ciężą, ciężę, cięży, cifem, cifie, cifom, cifów, cinch, cioci, ciosa, ciosą, ciosę, cioso, ciosu, ciosy, ciosz, ciota, ciotą, ciotę, cioto, cioty, cipce, cipci, cipek, cipie, cipka, cipką, cipkę, cipki, cipko, cipom, cipsk, circa, cisak, cisem, cisie, cisis, ciska, cisną, cisnę, cisom, cisów, cista, cistą, cistę, cisto, cisty, cisza, ciszą, cisze, ciszę, ciszo, ciszy, ciuch, ciućm, ciuka, ciula, ciule, ciuli, ciulu, ciuła, ciuma, ciumą, ciumę, ciumo, ciumy, ciupa, ciupą, ciupę, ciupo, ciupy, ciura, ciurą, ciurę, ciuro, ciury, ciwun, cizia, cizią, cizie, cizię, ciziu, ciżba, ciżbą, ciżbę, ciżbo, ciżby, ciżem, ciżma, ciżmą, ciżmę, ciżmo, ciżmy, cknić, cląca, clącą, clące, clący, cleni, clerk, clili, cliła, cliło, cliły, climy, clipu, clipy, clisz, clona, cloną, clone, clono, clony, clown, cłach, cłami, cmoka, cnego, cnemu, cnień, cniło, cnota, cnotą, cnotę, cnoto, cnoty, cnych, cnymi, coach, cobem, cobie, cobla, coblą, coble, coblę, cobli, coblo, cobol, cobom, cobów, cobym, cobyś, cocha, coden, codom, cofać, cofaj, cofak, cofał, cofam, cofań, cofce, cofek, cofka, cofką, cofkę, cofki, cofko, cofną, cofnę, cokać, cokaj, cokał, cokam, cokań, cokor, cokół, colom, colon, colta, colty, combi, combo, comes, comte, conga, congą, congę, congi, congo, contr, coraz, corsa, corsą, corsę, corso, corsu, corsy, coryz, cośmy, count, córce, córci, córek, córka, córką, córkę, córki, córko, córom, córuń, córuś, córze, cóżże, crack, crawl, creda, credo, credu, crepa, crepą, crepę, crepo, crepy, cross, crown, crust, cucąc, cuceń, cucha, cuchą, cuchę, cucho, cuchu, cuchy, cucić, cucił, cućmy, cućże, cudak, cudem, cudna, cudną, cudne, cudni, cudny, cudom, cudów, cuduj, cudza, cudzą, cudze, cudzo, cudzy, cugla, cugle, cugli, cuglu, cugom, cugów, cukru, cukry, cukrz, cumie, cumom, cumuj, cupal, cupną, cupnę, curia, curią, curie, curię, curii, curio, curry, curyj, cusze, cwale, cwału, cwały, cwana, cwaną, cwane, cwani, cwany, cwela, cwelą, cwele, cwelę, cweli, cwelo, cwelu, cybeb, cybet, cycce, cycek, cycem, cyces, cycka, cycką, cyckę, cycki, cycko, cycku, cycom, cyców, cycuś, cydru, cydry, cydze, cyfra, cyfrą, cyfrę, cyfro, cyfry, cygai, cygaj, cygan, cygań, cygar, cygom, cyjan, cyjom, cykać, cykad, cykaj, cykał, cykam, cykań, cykas, cykat, cykle, cykli, cyklu, cykną, cyknę, cykor, cykot, cykut, cymen, cymes, cymie, cymom, cynar, cynce, cynek, cynia, cynią, cynie, cynię, cynii, cynij, cynik, cynio, cynka, cynką, cynkę, cynki, cynko, cynku, cynom, cynuj, cypel, cypla, cyple, cypli, cyplu, cyrki, cyrku, cyrla, cyrlą, cyrle, cyrlę, cyrli, cyrlo, cyrym, cysta, cystą, cystę, cysto, cysty, cytar, cytat, cytaz, cytra, cytrą, cytrę, cytro, cytry, cytuj, cywet, cywil, cywun, czach, czacz, czadr, czadu, czady, czadź, czaić, czaił, czają, czaje, czaję, czaju, czaka, czako, czakr, czaku, czapa, czapą, czapę, czapo, czapy, czara, czarą, czarę, czaro, czart, czaru, czary, czasu, czasy, czasz, czata, czatą, czatę, czato, czatu, czaty, czcią, czcić, czcij, czcił, czcza, czczą, czcze, czczę, czczo, czczy, czego, czeka, czeki, czeku, czela, czelą, czele, czelę, czeli, czelo, czemu, czepi, czepu, czepy, czerń, czerp, czert, czerw, czesz, cześć, czeta, czetą, czetę, czeto, czety, część, czipa, czips, czipy, cziru, czkać, czkaj, czkał, czkam, czkań, czkną, czknę, człap, człek, człon, cznia, czoka, czoki, czoku, czole, czoła, czołg, czoło, czołu, czopa, czopu, czopy, czort, czuba, czubi, czuby, czuch, czuci, czuha, czuhą, czuhę, czuho, czuhy, czuja, czują, czuje, czuję, czuju, czulą, czule, czulę, czuli, czuła, czułą, czułe, czuło, czuły, czumu, czumy, czuta, czutą, czute, czuto, czuty, czuwa, czuże, czwór, czyby, czyha, czyim, czyiś, ćakra, ćakrą, ćakrę, ćakro, ćakry, ćatni, ćelom, ćelów, ćmach, ćmami, ćmawa, ćmawą, ćmawe, ćmawi, ćmawy, ćmiąc, ćmień, ćmika, ćmiki, ćmiku, ćmili, ćmiła, ćmiło, ćmiły, ćmimy, ćmisz, ćmoka, ćmoki, ćmoku, ćpacz, ćpają, ćpali, ćpała, ćpało, ćpały, ćpamy, ćpana, ćpaną, ćpane, ćpani, ćpano, ćpany, ćpasz, ćpnąć, ćpnął, ćpnie, ćpnij, ćpuna, ćpuni, ćpuny, ćwiar, ćwicz, ćwiek, ćwika, ćwiki, ćwiku, ćwoka, ćwoki, ćwoku, daboi, dachu, dachy, dacia, dacią, dacie, dacię, dacii, dacij, dacio, dacyt, dacza, daczą, dacze, daczę, daczo, daczy, dadzą, dadze, dafne, dafni, dagob, dagom, daina, dainą, dainę, daino, dainy, dairy, dając, dajce, dajek, dajka, dajką, dajkę, dajki, dajko, dajmy, dajna, dajną, dajnę, dajno, dajny, dajże, dakce, dakka, dakką, dakkę, dakki, dakko, dakot, dalba, dalbą, dalbę, dalbo, dalby, dalej, dalia, dalią, dalie, dalię, dalii, dalij, dalio, dalom, dalsi, dałam, dałaś, dałby, dałem, dałeś, damar, damce, damek, dames, damie, damka, damką, damkę, damki, damko, damna, damno, damnu, damom, damul, damuś, dance, dandy, danej, danek, danem, dania, danią, danie, danin, daniu, danka, danko, danku, danom, danów, dansa, dansą, dansę, danso, dansy, danym, dańmi, darci, darda, dardą, dardę, dardo, dardy, darem, darli, darła, darło, darły, darmo, darni, darom, darów, darta, dartą, darte, darto, darty, daruj, darum, darzą, darze, darzę, darzy, datek, datki, datku, datom, datuj, datur, dawać, dawaj, dawał, dawań, dawca, dawcą, dawce, dawcę, dawco, dawcy, dawek, dawka, dawką, dawkę, dawki, dawko, dawna, dawną, dawne, dawni, dawno, dawny, dąbek, dąbka, dąbki, dąbku, dąłby, dąłem, dąłeś, dąsać, dąsaj, dąsał, dąsam, dąsań, dąsem, dąsie, dąsom, dąsów, dążąc, dążeń, dążmy, dążyć, dążył, dążże, dbają, dbale, dbali, dbała, dbałą, dbałe, dbało, dbały, dbamy, dbano, dbasz, debaj, debat, debel, debet, debil, debit, debla, deble, debli, deblu, debra, debrą, debrę, debro, debry, decha, dechą, dechę, decho, dechy, decka, decki, decku, decyl, decym, dedra, dedrą, dedrę, dedro, dedry, deizm, dejem, dejom, dejów, dekad, dekal, dekla, dekle, dekli, deklu, dekom, dekor, deków, dekuj, delft, delia, delią, delie, delię, delii, delij, delio, della, delle, delli, dellu, delta, deltą, deltę, delto, delty, demem, demie, demom, demon, demos, demów, denar, denat, denek, denga, dengą, dengę, dengi, dengo, denim, denka, denko, denku, denna, denną, denne, denni, denny, depcą, depce, depcę, depcz, depną, depnę, depot, derby, derce, derek, dereń, derik, derka, derką, derkę, derki, derko, derma, dermą, dermę, dermo, dermy, derom, derut, derze, desce, desek, deseń, deser, deses, desie, deska, deską, deskę, deski, desko, desom, destr, desze, detal, detto, dewie, dewiz, dewom, dewon, dewot, dewów, dezel, dezet, dębem, dębią, dębić, dębie, dębię, dębik, dębił, dębin, dębmy, dębom, dębów, dębże, dęcia, dęcie, dęciu, dęder, dędze, dęgom, dęłam, dęłaś, dętce, dętej, dętek, dętka, dętką, dętkę, dętki, dętko, dętym, dharm, dhoti, diacy, diada, diadą, diadę, diado, diady, diaka, diaki, diaku, diale, diali, dialu, dianu, diany, dicie, dicta, dienu, dieny, diera, dierą, dierę, diero, diery, dieta, dietą, dietę, dieto, diety, dikce, dikka, dikką, dikkę, dikki, dikko, diler, dimem, dimer, dimie, dimom, dimów, dinar, diner, dingi, dingo, dinka, dinks, dioda, diodą, diodę, diodo, diody, diora, diorą, diorę, dioro, diory, dipem, dipie, dipis, dipol, dipom, dipów, dirae, dirce, direk, dirge, dirka, dirką, dirkę, dirki, dirko, dirku, dirty, diruj, disco, disie, disis, disko, disom, disów, ditem, ditom, ditox, ditów, ditto, diucy, diuka, diuki, diuku, diuna, diuną, diunę, diuno, diuny, divie, divom, diwem, diwie, diwom, diwów, dizez, dławi, dłoni, długa, długą, długi, długo, długu, dłuta, dłuto, dłutu, dłużą, dłużę, dłuży, dmąca, dmącą, dmące, dmący, dmuch, dnach, dnami, dnawa, dnawą, dnawe, dnawi, dnawy, dnieć, dniem, dnień, dniom, dniuj, dobić, dobie, dobij, dobił, dobni, dobok, dobom, dobór, dobra, dobrą, dobre, dobro, dobru, dobry, dobyć, dobył, doceń, docuć, dodać, dodaj, dodał, dodam, dodań, dodrą, dodrę, doduś, dogaś, dogna, dogną, dognę, dogol, dogom, dogoń, dogól, dogów, dogra, doili, doiła, doiło, doiły, doimy, doina, doiną, doinę, doino, doiny, doisz, doiwa, doiwo, doiwu, dojąc, dojąć, dojął, dojdą, dojdę, dojdź, dojeb, dojem, dojeń, dojęć, dojmą, dojmę, dojna, dojną, dojne, dojni, dojny, dojom, dojów, dojść, dokaż, dokąd, doker, dokom, dokop, dokoś, doków, dokuć, dokuj, dokuł, dokup, dolać, dolał, dolań, dolar, dolby, dolca, dolce, dolcu, dolec, doleć, dolej, dolep, doleź, doleż, dolin, dolly, dolna, dolną, dolne, dolni, dolny, dolom';
@@ -186,16 +308,19 @@ let words12 = 'wlicz, wloką, wlokę, wlotu, wloty, wlókł, włada, władz, wł
 
 let added = 'brzeg, szkło, kurka, tykwa, konto, kusza'; //tutaj dopisuj brakujące wyrazy
 let Words = (words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort();
-//console.log(Words.length);
+
 //words=words.replace('\n', ',').replace(',,',',').split(',');
 let WordsReset = Words;
 
-// console.log((words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort().join(' '));
 
 function reset() {
 	Words = (words1 + ', ' + words2 + ', ' + words3 + ', ' + words4 + ', ' + words5 + ', ' + words6 + ', ' + words7 + ', ' + words8 + ', ' + words9 + ', ' + words10 + ', ' + words11 + ', ' + words12 + ', ' + added).replaceAll(', ', ',').split(',').sort()
 	list.innerHTML = Words.join(" ");
 
+
+	popupL.style.opacity = '0'
+
+	resetbtn.blur()
 	for (let i = 0; i < 5; i++) {
 		inp[i].blur()
 	}
@@ -211,7 +336,7 @@ function reset() {
 	}
 
 	list.style.height = "auto";
-	list.classList.remove('empty')
+	//list.classList.remove('empty')
 
 }
 
@@ -219,73 +344,76 @@ function reset() {
 
 function clickLetter(aw) {
 
-	console.log('a ', aw);
+
 
 	for (let i = 0; i < letters.length; i++) {
-		letters[i].addEventListener('click', ev => { //console.log('siema', ev.target);
+		letters[i].addEventListener('click', ev => {
 			list.style.height = "auto"
 			if (!check.checked) {
-				console.log('letters: ', letters[i]);
-				console.log('przed drugim: ', document.activeElement);
-				console.log('przed drugim: ', document.activeElement.classList.contains('full'));
-				if ((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full')) {
-					//chyba to wywoluje niepotrzebnie alert
-					console.log('drugi: ', document.activeElement);
-
-					//alertfn();
 
 
+				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
 
 
+					//alertfn()
 				} else {
 
-					letters[i].classList.add('lack');
-
-					let Id = letters[i].id;
+					if (document.activeElement.classList.contains('full') && (ev.target.classList.contains('thereIs') || ev.target.classList.contains('lack') || ev.target.classList.contains('position'))) {
 
 
-					for (let i = 0; i < Words.length; i++) {
+						//alertfn()
+					} else {
+						letters[i].classList.add('lack');
+
+						let Id = letters[i].id;
 
 
-						if (Words[i].indexOf(Id) > -1) {
+						for (let i = 0; i < Words.length; i++) {
 
-							Words[i] = ' ';
 
+							if (Words[i].indexOf(Id) > -1) {
+
+								Words[i] = ' ';
+
+							}
 						}
+
+
+						list.innerHTML = Words.join(' ');
+						isEmpty()
 					}
-
-
-					list.innerHTML = Words.join(' ');
-					isEmpty()
 				}
 
 			} else if (check.checked) {
-				console.log('letter', letters[i]);
 
-				if ((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full')) {
-					console.log('inpfocus ', document.activeElement);
+
+
+				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
 
 					//alertfn()
-					console.log('trzeci');
-
-
 				} else {
 
-					letters[i].classList.add('thereIs');
-					let Id = letters[i].id;
-
-					for (let i = 0; i < Words.length; i++) {
+					if (document.activeElement.classList.contains('full') && (ev.target.classList.contains('thereIs') || ev.target.classList.contains('lack') || ev.target.classList.contains('position'))) {
 
 
-						if (Words[i].indexOf(Id) == -1) {
+						//alertfn()
+					} else {
+						letters[i].classList.add('thereIs');
+						let Id = letters[i].id;
+
+						for (let i = 0; i < Words.length; i++) {
 
 
-							Words[i] = ' ';
+							if (Words[i].indexOf(Id) == -1) {
+
+
+								Words[i] = ' ';
+							}
 						}
-					}
 
-					list.innerHTML = Words.join(' ');
-					isEmpty()
+						list.innerHTML = Words.join(' ');
+						isEmpty()
+					}
 				}
 			}
 		});
@@ -302,16 +430,16 @@ clickLetter()
 // 	let c=1;
 // 	for(let i=0; i<5; i++){
 
-// console.log('inp: ',inp[i]);
+// 
 
 
 
 // 	if(document.activeElement!== inp[i]) c++
 // 	}
-// 	console.log('c: ',c);
-// 	if(c==6) {console.log('nic');
+// 
+// 	if(c==6) 
 // 	body.focus()
-// 	console.log('focused: ', document.activeElement);
+// 	
 // }
 
 // }, true)
@@ -366,7 +494,7 @@ clickLetter()
 
 //nie działa, nwm czemu, wyżej lepsza wersja
 // function focusfn(e) {
-// 	console.log('slice ', e.slice(3));
+// 	
 
 // 	let ev = e.slice(3)
 
@@ -374,8 +502,7 @@ clickLetter()
 // 		if (event.key == 'ArrowRight') {
 // 			inputs.children[ev + 1].focus()
 // 		}
-// 		console.log('aaa', ev);
-// 		console.log('eee', e);
+// 		
 
 // 		if (event.key == 'ArrowLeft') {
 // 			inputs.children[ev - 1].focus()
@@ -389,24 +516,41 @@ clickLetter()
 //inputy
 
 for (let i = 0; i < inp.length; i++) {
+
+
 	inp[i].addEventListener("beforeinput", e => {
+
 		e.currentTarget.previousValue = e.currentTarget.value;
+
+
+
 
 	});
 
 	inp[i].addEventListener('input', ev => {
-		//console.log('ev ',ev.currentTarget.value);
-		//console.log('czwarty ev ',ev.currentTarget.value); //litera
+
+		console.log('aktywny czy zawiera full: ', document.activeElement.classList.contains('full'));
+
 
 		for (let i = 0; i < letters.length; i++) {
-			if (letters[i].id == ev.currentTarget.value && letters[i].classList.contains('lack')) {
-				ev.currentTarget.value = ''
-				//console.log('czwarty');
 
-				//alertfn()
+			ev.currentTarget.value = ev.currentTarget.value.toLowerCase()
+
+
+
+			if (letters[i].id == ev.currentTarget.value && letters[i].classList.contains('lack')) {
+				ev.currentTarget.value = ev.currentTarget.previousValue
+
+
+				//if (letters[i].classList.contains('lack')) {
+				//to wyświetla alert jeśli jest kreska i klikniejsz na szare
+				alertfn()
+				//}
+
 			}
+
 		}
-		if (/[a-zA-Z]{1}/.test(ev.currentTarget.value)) {
+		if (/[a-zA-Z-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{1}/.test(ev.currentTarget.value)) {
 
 			inp[i].value = ev.currentTarget.value.toLowerCase()
 
@@ -419,7 +563,7 @@ for (let i = 0; i < inp.length; i++) {
 					//inp[i].classList.add('full')
 					inp[i].readOnly = true
 
-					//inp[i].blur()
+
 
 				}
 
@@ -428,12 +572,13 @@ for (let i = 0; i < inp.length; i++) {
 			}
 			for (let k = 0; k < letters.length; k++) {
 				if (letters[k].id == inp[i].value) {
-					console.log('elo');
+
 					letters[k].classList.add('position');
 				}
 			}
 			list.innerHTML = Words.join(' ');
 			list.style.height = "auto"
+
 			isEmpty()
 		} else {
 			ev.currentTarget.value = ev.currentTarget.previousValue;
@@ -467,10 +612,9 @@ function skipB(e) {
 	e--
 
 	inputs.children[e].focus()
-	// inputs.children[e].style.background='linear-gradient(180deg, transparent 23%, lightgray 100%)'
-	// if(inputs.children[e+1].blur()) inputs.children[e].style.background='transparent'
 
-	console.log('left');
+
+
 
 	const el = document.activeElement
 
@@ -481,7 +625,7 @@ function skipB(e) {
 
 				e = 5
 			}
-			console.log('before', e);
+
 			inp[e - 1].focus()
 			e--
 		}
@@ -494,14 +638,21 @@ function skipB(e) {
 
 
 // 	 if (e.key!=='ArrowRight' || e.key!=='ArrowLeft') {
-// 		inp[0].blur()
-// 		console.log('blurrr');
+// 		inp[0]
+// 		
 
 // 	}
 // })
 // }
 //jeszcze pododawać wielkie litery
-function letterCheck(e) {
+function letterCheck(e, inpid) {
+
+
+	console.log('INPID', inpid);
+
+	if (inpid == inp[0] || inpid == inp[1] || inpid == inp[2] || inpid == inp[3] || inpid == inp[4] || inpid == inp[5])
+		inpid.blur()
+
 	if (e.key == 'ą' || e.key == 'Ą') letters[0].click()
 	if (e.key == 'ć' || e.key == 'Ć') letters[1].click()
 	if (e.key == 'ę' || e.key == 'Ę') letters[2].click()
@@ -511,7 +662,7 @@ function letterCheck(e) {
 	if (e.key == 'ń' || e.key == 'Ń') letters[6].click()
 	if (e.key == 'ż' || e.key == 'Ż') letters[7].click()
 	if (e.key == 'ź' || e.key == 'Ź') letters[8].click()
-	if (e.key == 'q' || e.key == 'Q') letters[9].click()
+	if (e.key == 'q' || e.key == 'Q') letters[9].click();
 	if (e.key == 'w' || e.key == 'W') letters[10].click()
 	if (e.key == 'e' || e.key == 'E') letters[11].click()
 	if (e.key == 'r' || e.key == 'R') letters[12].click()
@@ -530,19 +681,25 @@ function letterCheck(e) {
 	if (e.key == 'j' || e.key == 'J') letters[25].click()
 	if (e.key == 'k' || e.key == 'K') letters[26].click()
 	if (e.key == 'l' || e.key == 'L') letters[27].click()
-	if (e.key == 'z' || e.key == 'Z') letters[28].click()
+	if (e.key == 'z' || e.key == "Z") letters[28].click()
 	if (e.key == 'x' || e.key == 'X') letters[29].click()
 	if (e.key == 'c' || e.key == 'C') letters[30].click()
 	if (e.key == 'v' || e.key == 'V') letters[31].click()
 	if (e.key == 'b' || e.key == 'B') letters[32].click()
 	if (e.key == 'n' || e.key == 'N') letters[33].click()
 	if (e.key == 'm' || e.key == 'M') letters[34].click()
+
+	if (inpid == inp[0] || inpid == inp[1] || inpid == inp[2] || inpid == inp[3] || inpid == inp[4] || inpid == inp[5])
+		inpid.focus()
 }
 
 function arrows(ev) {
-	//console.log('ev: ', ev.key);
+
 
 	inp[0].addEventListener('keyup', e => {
+
+
+
 
 		if (e.key == 'ArrowRight') {
 

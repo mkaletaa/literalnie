@@ -125,7 +125,22 @@ body {
 
 
 
+.A {
+    background: linear-gradient(189deg, #d53369 0%, #daae51 100%);
+    border-radius: 6px;
+    border: none;
+
+    width: 60px;
+    height: 60px !important;
+    line-height: 50px;
+    outline: none;
+    height: 40px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 #words {
+    font-size: 16px;
     border: 2px solid black;
     border-radius: 8px;
     padding: 10px;
@@ -143,11 +158,11 @@ body {
     min-height: 100px;
 }
 
-.empty {
+/* .empty {
     color: var(--yellow);
     text-align: center;
     font-size: 30px;
-}
+} */
 
 /* The switch - the box around the slider */
 .switch {
@@ -234,7 +249,7 @@ input:checked+.slider:before {
 
 .inp {
     width: 32px;
-    height: 45px;
+    height: 40px;
     margin-right: 5px;
     background-color: transparent;
     text-align: center;
@@ -255,19 +270,19 @@ input:checked+.slider:before {
 
 
 .inp:hover {
-    background: linear-gradient(180deg, transparent 23%, lightgray 100%);
+    background: linear-gradient(180deg, transparent 13%, lightgray 100%);
 }
 
 
 
 .inp:focus {
     outline: none;
-    background: linear-gradient(180deg, transparent 23%, lightgray 100%);
+    background: linear-gradient(180deg, transparent 13%, lightgray 100%);
 }
 
 .full {
 
-    background: linear-gradient(180deg, transparent 23%, var(--green) 100%);
+    background: linear-gradient(180deg, transparent 13%, var(--green) 100%);
 }
 
 .full:hover {
@@ -307,8 +322,13 @@ input:checked+.slider:before {
     cursor: pointer;
     border: none;
     background-color: var(--yellow);
+    outline: none;
 }
 
+.if {
+    background-color: var(--yellow) !important;
+
+}
 
 
 
@@ -382,6 +402,8 @@ input:checked+.slider:before {
     color: red;
     cursor: pointer;
 }
+
+
 
 /* Add Zoom Animation */
 .animate {
@@ -504,5 +526,20 @@ input:checked+.slider:before {
 
     100% {
         opacity: 0;
+    }
+}
+
+.showLack {
+    -webkit-animation: fadeInLack 1.5s;
+    animation: fadeInLack 1.5s;
+}
+
+@keyframes fadeInLack {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
     }
 }
