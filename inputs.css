@@ -1,0 +1,112 @@
+#inputs {
+    position: absolute;
+    left: -35px;
+    bottom: 0%;
+    justify-content: center;
+    display: flex;
+    width: calc(100% + 30px);
+    font-family: Arial, Helvetica, sans-serif !important;
+    /* background-color: rgb(198, 129, 1); */
+}
+
+.inp {
+
+    width: 4vw;
+    max-width: 50px;
+    min-width: 30px;
+    /* height: 180% !important; */
+    aspect-ratio: 1/1.2 !important;
+    margin-right: 5px;
+    filter: blur(.5px);
+    color: rgb(0, 138, 21);
+    /* background-color: transparent; */
+    text-align: center;
+    /* font-family: "Times New Roman", Times, serif; */
+    justify-content: space-between;
+    font-size: 2em;
+    /* border-radius: 15px; */
+    /* border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none; */
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 5px 5px ;
+
+    vertical-align: sub;
+    line-height: 50px;
+    /* background: ivory;
+    background: linear-gradient(330deg, ivory 0%, rgb(235, 221, 230) 100%); */
+    background: rgb(231,237,230);
+    background: linear-gradient(124deg, rgba(231,237,230,1) 23%, rgba(224,224,224,1) 32%, rgb(236, 234, 234) 59%);
+
+    box-shadow: inset 4px 4px 10px 0px rgb(235, 221, 230), inset -4px -4px 10px 0px rgb(239, 235, 220), 1px 1px 5px 0 lightgray
+
+    /* transition: background .5s; */
+}
+
+
+.inp:hover:not(.full) {
+    /* background: linear-gradient(180deg, transparent 13%, lightgray 100%); */
+ /* background: ivory; */
+
+ /* box-shadow: inset -2px -2px 10px 0px rgb(67, 45, 45, .5);
+    background: linear-gradient(330deg, ivory 0%, rgb(235, 221, 230) 100%);  */
+
+    outline: none;
+    box-shadow: inset 2px 2px 10px 0px rgb(67, 45, 45, .5)
+}
+
+
+
+.inp:focus {
+    outline: none;
+    /* box-shadow: inset 1px 1px 10px -1px rgb(118, 116, 117), inset -4px -4px 10px 0px rgb(239, 235, 220); */
+
+    box-shadow: inset 2px 2px 10px 0px rgb(67, 45, 45, .5)
+    /* background: linear-gradient(180deg, transparent 13%, lightgray 100%); */
+}
+
+.full {
+    /* animation: green 1s; */
+
+    /* background: linear-gradient(180deg, transparent 13%, var(--green1) 100%); */
+    /* background: rgb(0, 255, 94); */
+    background: rgb(182,247,165);
+    background: linear-gradient(124deg, rgba(182,247,165,1) 23%, rgba(112,244,0,1) 37%, rgba(150,255,61,1) 59%);
+box-shadow: 1px 1px 5px 0 lightgray;
+}
+
+.full:hover {
+    /* background: linear-gradient(180deg, transparent 23%, var(--green1) 100%); */
+    cursor: default;
+}
+
+.full:focus {
+    background: rgb(182,247,165);
+    background: linear-gradient(124deg, rgba(182,247,165,1) 23%, rgba(112,244,0,1) 37%, rgba(150,255,61,1) 65%);
+box-shadow: 1px 1px 5px 0 lightgray
+}
+
+
+@media screen and (max-width: 620px) {
+    #inputs {
+        min-width: 200px;
+        position: relative;
+        margin: auto !important;
+        width: 60%;
+        left: auto;
+        /* background-color: aliceblue; */
+        height: 80%;
+        /* left: 0; */
+    }
+
+    .inp {
+        font-size: 2em;
+        width: inherit;
+        height: 55px;
+        /* aspect-ratio: 1/1 !important; */
+
+        /* height: 70px;
+        height: 90% */
+    }
+}
