@@ -266,24 +266,21 @@ function yellow() {
 }
 //inputy	
 
-for (let i = 0; i < letters.length; i++) {
+// for (let i = 0; i < letters.length; i++) {
 
-	letters[i].addEventListener('mouseenter', () => {
-		if ((!letters[i].classList.contains('position') && !letters[i].classList.contains('lack') && !letters[i].classList.contains('thereIs'))) {
+// 	letters[i].addEventListener('mouseenter', () => {
+// 		if ((!letters[i].classList.contains('position') && !letters[i].classList.contains('lack') && !letters[i].classList.contains('thereIs'))) {
 
-			if (check.checked) {
-				console.log('aa')
-				letters[i].setAttribute('title', 'kliknij, jeśli hasło zawiera tę literę')
-			} else letters[i].setAttribute('title', 'kliknij, jeśli hasło nie zawiera tej litery')
-		} else {
+// 			if (check.checked) {
+// 				console.log('aa')
+// 				letters[i].setAttribute('title', 'kliknij, jeśli hasło zawiera tę literę')
+// 			} else letters[i].setAttribute('title', 'kliknij, jeśli hasło nie zawiera tej litery')
+// 		} else {
 
-			letters[i].removeAttribute('title')
-		}
-	})
-
-
-
-}
+// 			letters[i].removeAttribute('title')
+// 		}
+// 	})
+// }
 const div = document.querySelector('#div')
 document.addEventListener('keydown', e => {
 	console.log('dd', div.scrollTop);
