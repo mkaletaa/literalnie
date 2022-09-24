@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE HTML>
 <html lang="pl">
-
 <head>
 	<meta charset="utf-8" />
 	<title>literalnie solver</title>
@@ -9,24 +8,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link rel="icon" href="literalnie.png">
-	<script type="module" defer src="literalnie.js"></script>
+	<script type="module" defer src="wordle.js"></script>
 	<script type="module" defer src="words.js"></script>
 
-	<link rel="stylesheet" href="literalnie.css">
-	<!-- CSS only -->
+	<link rel="stylesheet" href="wordle.css">
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="keys.css">
 	<link rel="stylesheet" href="inputs.css">
 	<link rel="stylesheet" href="modal.css">
-	
 </head>
-
 <body>
-
-
-
 
 	<!-- The Modal -->
 	<div id="id01" class="modal fade">
@@ -64,31 +58,15 @@
 						ale tym razem upewnij się, że switch jest żółty. Jeśli dana litera występuje w haśle i jest na
 						odpowniej pozycji, kliknij na odpowiedni input od 1 do 5 i wpisz do niego tę literę.
 					</div>
-
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 
-
-
-
-
-
-
-
 	<div id="topBar" class="col-sm">
 		<button data-bs-toggle="modal" data-bs-target="#id01" id="qm"><b>?</b></button>
-
-
 		<button id="A" ><b>A</b></button>
-
-
 	</div>
-
-
 
 
 	<div id="content">
@@ -96,21 +74,18 @@
 		<div id="left" class="col-sm">
 			<button id="reset" >reset</button>
 
-			<div id="inject" style="display: none; width: 50%; margin-top: 0; justify-content: space-around;"></div>
+			<div id="inject"></div>
 
 			<div class="form-check form-switch ">
 				<input class="form-check-input" type="checkbox" id="check"  name="darkmode"
-					value="yes" style="background-color: grey; outline: none">
+					value="yes">
 			</div>
 		</div>
 
-
 		<div id="con">
-			<!-- <div id="header" style="margin: auto; width: 100%; text-align: center"> -->
 
 			<p id='napis'> Kliknij raz na literę, jeśli
 				hasło jej <u>nie zawiera</u></p>
-			<!-- </div> -->
 
 			<div id="zeroth-row" class="lrow">
 				<div id="ą" class="letter">ą</div>
@@ -123,6 +98,7 @@
 				<div id="ż" class="letter">ż</div>
 				<div id="ź" class="letter">ź</div>
 			</div>
+
 			<div id="first-row" class="lrow">
 				<div id="q" class="letter">q</div>
 				<div id="w" class="letter">w</div>
@@ -135,6 +111,7 @@
 				<div id="o" class="letter">o</div>
 				<div id="p" class="letter">p</div>
 			</div>
+
 			<div id="second-row" class="lrow">
 				<div id="a" class="letter">a</div>
 				<div id="s" class="letter">s</div>
@@ -146,6 +123,7 @@
 				<div id="k" class="letter">k</div>
 				<div id="l" class="letter">l</div>
 			</div>
+			
 			<div id="third-row" class="lrow">
 				<div id="z" class="letter">z</div>
 				<div id="x" class="letter">x</div>
@@ -156,13 +134,8 @@
 				<div id="m" class="letter">m</div>
 			</div>
 		</div>
+
 		<div id="right">
-			<!-- <label class="switch">
-				<input type="checkbox" id="check" onchange="yellow()">
-				<span class="slider round" title="switch [Shift]"></span>
-			</label> -->
-
-
 
 			<div id="inputs">
 				<input type="text" placeholder="_" id="inp0" class="inp" maxlength='1' autocomplete="off" >
@@ -173,27 +146,22 @@
 			</div>
 		</div>
 
-
 	</div>
 	<button  id="myBtn">&#8593</button>
 	<div id="words"></div>
 
-	<!-- <div id="popups"> -->
-	<div id="popupLack" style="display: none"><b>BRAK SŁÓW W BAZIE</b></div>
+	<div id="popupLack" ><b>BRAK SŁÓW W BAZIE</b></div>
 	<div id="popup" class="toast">Ta litera już została wybrana</div>
-	<!-- </div> -->
-	<div class="toast" style=" position: fixed; bottom: 30px; right: 10px">
-		<div class="toast-header">
-			To jest program ułatwiający wygranie w literalnie
+
+	<div class="toast" id="toast" >
+		<div class="toast-header" style="color: orange">
+			To jest program ułatwiający rozgrywkę w polską wersję Wordle
 			<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
 		</div>
 		<div class="toast-body">
-			otwórz literalnie w osobnej karcie lub kliknij w ten link:
+			Otwórz grę w osobnej karcie lub kliknij w ten link: <a target="_blank" href="https://literalnie.fun/">https://literalnie.fun/</a>
 		</div>
 	</div>
-	<!-- <script src=" https://code.jquery.com/jquery-1.12.3.js"
-		integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous">
-		</script> -->
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
@@ -205,6 +173,6 @@
 			return new bootstrap.Tooltip(tooltipTriggerEl)
 		})
 	</script>
-</body>
 
+</body>
 </html>

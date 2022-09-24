@@ -266,12 +266,8 @@ function reset() {
 		inp[i].classList.remove('full')
 		inp[i].readOnly = false
 	}
-
 	list.style.height = "auto";
-
 }
-
-
 
 function clickLetter(aw) {
 	for (let i = 0; i < letters.length; i++) {
@@ -280,59 +276,39 @@ function clickLetter(aw) {
 			if (!check.checked) {
 
 				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.acftiveElement.classList.contains('full'))) {
-
-
-				} else {
-
+				} 
+				else {
 					if (document.activeElement.classList.contains('full') && (ev.target.classList.contains('thereIs') || ev.target.classList.contains('lack') || ev.target.classList.contains('position'))) {
-
-
-						//alertfn()
-					} else {
+					} 
+					else {
 						letters[i].classList.add('lack');
-
 						let Id = letters[i].id;
-
 
 						for (let i = 0; i < Words.length; i++) {
 
-
 							if (Words[i].indexOf(Id) > -1) {
-
 								Words[i] = ' ';
-
 							}
 						}
-
-
 						list.innerHTML = Words.join(' ');
 						isEmpty()
 					}
 				}
-
 			} else if (check.checked) {
-
-
 
 				if (((letters[i].classList.contains('lack') || letters[i].classList.contains('thereIs') || letters[i].classList.contains('position')) && !document.activeElement.classList.contains('full'))) {
 
-					//alertfn()
 				} else {
 
 					if (document.activeElement.classList.contains('full') && (ev.target.classList.contains('thereIs') || ev.target.classList.contains('lack') || ev.target.classList.contains('position'))) {
 
-
-						//alertfn()
 					} else {
 						letters[i].classList.add('thereIs');
 						let Id = letters[i].id;
 
 						for (let i = 0; i < Words.length; i++) {
 
-
 							if (Words[i].indexOf(Id) == -1) {
-
-
 								Words[i] = ' ';
 							}
 						}
@@ -393,7 +369,6 @@ for (let i = 0; i < inp.length; i++) {
 				if (letters[k].id == inp[i].value) {
 					letters[k].classList.add('position');
 					window.position = true
-					
 				}
 			}
 			list.innerHTML = Words.join(' ');
@@ -426,7 +401,6 @@ function skipF(e) {
 		}
 	}
 }
-
 
 function skipB(e) {
 	e--
@@ -584,9 +558,3 @@ function myFunction(x) {
 var x = window.matchMedia("(max-width: 620px)")
 myFunction(x) // Call listener function at run time
 x.addListener(myFunction) // Attach listener function on state changes
-
-function theme() {
-
-	// document.querySelector(':root').css('--bg', 'red');
-	document.documentElement.style.setProperty('--bg', '#ff0000');
-}
